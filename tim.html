@@ -23,57 +23,61 @@
             <div class="flex items-center justify-between h-20">
 
                 <!-- Logo -->
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <a href="./index.html" aria-label="Dapur Gizi - Beranda"
+                    class="flex items-center space-x-3">
                     <div
                         class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-gizi-600 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-gizi-600/30">
                         <i class="fa-solid fa-utensils text-xl"></i>
                     </div>
                     <div>
                         <span
-                            class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-gizi-800 via-gizi-600 to-emerald-500 bg-clip-text text-transparent">Dapur
+                            class="brand-title font-extrabold tracking-tight bg-gradient-to-r from-gizi-800 via-gizi-600 to-emerald-500 bg-clip-text text-transparent">Dapur
                             Gizi</span>
-                        <span class="block text-[10px] font-semibold tracking-wider text-slate-400 uppercase">Gizi &amp;
+                        <span class="brand-tagline block text-[10px] font-semibold tracking-wider text-slate-400 uppercase">Gizi &amp;
                             Tumbuh Kembang Banjarnegara</span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Desktop Nav Tabs -->
-                <nav class="hidden md:flex items-center space-x-1">
+                <nav aria-label="Navigasi utama" class="desktop-nav items-center space-x-1">
                     <a href="./index.html" id="nav-home"
+                        data-page="home"
                         class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-gizi-700 bg-gizi-50">
                         <i class="fa-solid fa-house mr-2"></i>Beranda
                     </a>
                     <a href="./cek-stunting.html" id="nav-stunting"
+                        data-page="stunting"
                         class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-child-reaching mr-2 text-amber-500"></i>Cek Stunting
                     </a>
                     <a href="./resep.html" id="nav-dashboard"
+                        data-page="dashboard"
                         class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-chart-line mr-2"></i>Dashboard & Resep
                     </a>
                     <a href="./favorit.html" id="nav-favorites"
+                        data-page="favorites"
                         class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-heart text-red-500 mr-2"></i>Favorit (<span id="fav-count">0</span>)
                     </a>
                     <a href="./tim.html" id="nav-admin"
+                        data-page="admin"
                         class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-users mr-2"></i>Kelompok Kami
                     </a>
                 </nav>
 
                 <!-- Mobile Header Right Actions -->
-                <div class="flex md:hidden items-center space-x-2">
-                    <a href="./cek-stunting.html"
-                        class="px-3 py-1.5 text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200 rounded-xl flex items-center">
-                        <i class="fa-solid fa-child-reaching mr-1.5 text-amber-500"></i>Cek Stunting
-                    </a>
+                <div class="mobile-header-actions flex items-center space-x-2">
                     <a href="./favorit.html"
+                        aria-label="Buka resep favorit"
                         class="p-2.5 text-slate-600 hover:text-red-500 rounded-xl bg-slate-100 relative">
                         <i class="fa-solid fa-heart text-lg"></i>
                         <span id="fav-count-mobile"
                             class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
                     </a>
-                    <button onclick="toggleMobileNav()"
+                    <button id="mobile-menu-toggle" type="button" aria-controls="mobile-nav-menu" aria-expanded="false"
+                        aria-label="Buka menu navigasi" onclick="toggleMobileNav()"
                         class="p-2.5 text-slate-700 rounded-xl bg-slate-100 hover:bg-slate-200">
                         <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
                     </button>
@@ -81,28 +85,29 @@
             </div>
 
             <!-- Mobile Navigation Menu Dropdown -->
-            <div id="mobile-nav-menu" class="hidden md:hidden border-t border-slate-200 py-3 space-y-1">
+            <nav id="mobile-nav-menu" aria-label="Navigasi seluler" aria-hidden="true"
+                class="mobile-nav border-t border-slate-200 py-3 space-y-1">
                 <a href="./index.html"
-                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                    data-page="home" class="mobile-nav-link flex w-full items-center px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-house w-6 text-gizi-600"></i>Beranda
                 </a>
                 <a href="./cek-stunting.html"
-                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-amber-700 bg-amber-50 hover:bg-amber-100">
+                    data-page="stunting" class="mobile-nav-link flex w-full items-center px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-child-reaching w-6 text-amber-500"></i>Kalkulator Cek Stunting Balita
                 </a>
                 <a href="./resep.html"
-                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                    data-page="dashboard" class="mobile-nav-link flex w-full items-center px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-chart-line w-6 text-gizi-600"></i>Dashboard & Katalog Resep
                 </a>
                 <a href="./favorit.html"
-                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                    data-page="favorites" class="mobile-nav-link flex w-full items-center px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-heart w-6 text-red-500"></i>Resep Favorit Saya
                 </a>
                 <a href="./tim.html"
-                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                    data-page="admin" class="mobile-nav-link flex w-full items-center px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-users w-6 text-gizi-600"></i>Kelompok Kami
                 </a>
-            </div>
+            </nav>
         </div>
     </header>
     <main class="flex-grow">
@@ -128,6 +133,15 @@
                         id="team-members-grid">
                         <!-- Dynamic team list -->
                     </div>
+
+                    <div class="mx-auto mt-10 max-w-3xl rounded-2xl border border-slate-200/80 bg-slate-50 p-5 text-center sm:p-7">
+                        <h3 class="text-lg font-extrabold text-slate-900">Terhubung dengan Kami</h3>
+                        <p class="mt-1 text-sm text-slate-600">Tautan contoh dapat disesuaikan pada konfigurasi kontak di <code>js/app.js</code>.</p>
+                        <nav id="team-contact-links" aria-label="Kontak kelompok dan website sekolah"
+                            class="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
+                            <!-- Contact links are populated from js/app.js -->
+                        </nav>
+                    </div>
                 </div>
 
             </div>
@@ -142,7 +156,7 @@
 
             <!-- Close Button -->
             <button aria-label="Tutup detail resep" onclick="closeModal('recipe-modal')"
-                class="absolute top-4 right-4 z-10 w-9 h-9 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-all">
+                class="absolute top-4 right-4 z-10 w-11 h-11 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-all">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
@@ -156,13 +170,13 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
 
                 <!-- Recipe cost estimate -->
-                <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                <div class="recipe-modal-summary absolute bottom-4 left-4 right-4 flex justify-between items-end">
                     <div>
                         <span id="modal-recipe-cat"
                             class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-gizi-500 text-white shadow-md"></span>
                         <h2 id="modal-recipe-title" class="text-2xl font-black text-white mt-1"></h2>
                     </div>
-                    <div class="text-right">
+                    <div class="recipe-modal-cost text-right">
                         <div class="text-xs text-slate-200 font-medium">Perkiraan biaya per resep</div>
                         <div id="modal-recipe-price" class="text-2xl price-text-outline"></div>
                         <div class="text-[9px] text-slate-200">Harga contoh; cek harga setempat.</div>
@@ -222,12 +236,12 @@
                 <!-- Footer Action Buttons -->
                 <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
                     <button id="modal-fav-btn" onclick=""
-                        class="px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold flex items-center space-x-2 text-slate-700 hover:bg-slate-50">
+                        class="touch-target px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold flex items-center space-x-2 text-slate-700 hover:bg-slate-50">
                         <i class="fa-regular fa-heart text-red-500"></i>
                         <span id="modal-fav-text">Simpan Favorit</span>
                     </button>
                     <button onclick="closeModal('recipe-modal')"
-                        class="px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800">
+                        class="touch-target px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800">
                         Tutup
                     </button>
                 </div>

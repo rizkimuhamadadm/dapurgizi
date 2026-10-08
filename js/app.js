@@ -511,26 +511,39 @@ const AppData = {
     ],
 
     team: [
+        // Set image to a file path such as "./img/adam-maulana.jpg" when the photo is available.
         {
             name: "Adam Maulana",
-            role: "Anggota Kelompok Dapur Gizi"
+            role: "Anggota Kelompok Dapur Gizi",
+            image: ""
         },
         {
             name: "Nanda Ardiansyah",
-            role: "Anggota Kelompok Dapur Gizi"
+            role: "Anggota Kelompok Dapur Gizi",
+            image: ""
         },
         {
             name: "Harine",
-            role: "Anggota Kelompok Dapur Gizi"
+            role: "Ketua Kelompok",
+            image: ""
         }
     ]
+};
+
+const teamContactLinks = {
+    instagram: "https://www.instagram.com/username_anda/",
+    whatsapp: "https://wa.me/62XXXXXXXXXX",
+    schoolWebsite: "https://www.smk.sch.id/"
 };
 
 const getStoredFavorites = () => {
     try {
         const saved = localStorage.getItem('dapurGizi_favs');
         const parsed = saved ? JSON.parse(saved) : [];
-        return Array.isArray(parsed) ? parsed : [];
+        if (!Array.isArray(parsed)) return [];
+        return [...new Set(parsed.filter(id =>
+            typeof id === 'string' && AppData.recipes.some(recipe => recipe.id === id)
+        ))];
     } catch (error) {
         console.warn('Unable to parse saved favorites:', error);
         return [];
@@ -563,8 +576,6 @@ document.addEventListener("DOMContentLoaded", () => {
         searchInput.value = new URLSearchParams(window.location.search).get('keyword') || '';
         currentState.searchQuery = searchInput.value.toLowerCase().trim();
     }
-    const categoryDropdown = document.getElementById('category-dropdown');
-    if (categoryDropdown) categoryDropdown.value = currentState.selectedCategory;
     renderDashboardRecipes();
     updateBudgetDisplay(currentState.maxBudget);
     updateAgeLabels(document.getElementById('stunting-age')?.value || 12);
@@ -574,6 +585,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     updateActiveNav();
     document.addEventListener('keydown', handleModalKeydown);
+    document.addEventListener('keydown', handleMobileNavKeydown);
+    document.getElementById('mobile-nav-menu')?.addEventListener('click', event => {
+        if (event.target.closest('a')) setMobileNavOpen(false);
+    });
+    window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 1280px)').matches) setMobileNavOpen(false);
+    });
 });
 
 const pagePaths = {
@@ -609,23 +627,40 @@ function getCurrentTab() {
 }
 
 function updateActiveNav() {
-    document.querySelectorAll('.nav-btn').forEach(button => {
-        button.classList.remove('text-gizi-700', 'bg-gizi-50');
-        button.classList.add('text-slate-600');
+    const currentTab = getCurrentTab();
+    document.querySelectorAll('.nav-btn, .mobile-nav-link').forEach(link => {
+        const isCurrent = link.dataset.page === currentTab;
+        link.classList.toggle('text-gizi-700', isCurrent);
+        link.classList.toggle('bg-gizi-50', isCurrent);
+        link.classList.toggle('text-slate-600', !isCurrent);
+        link.setAttribute('aria-current', isCurrent ? 'page' : 'false');
     });
-
-    const activeButton = document.getElementById(`nav-${getCurrentTab()}`);
-    if (activeButton) {
-        activeButton.classList.add('text-gizi-700', 'bg-gizi-50');
-        activeButton.classList.remove('text-slate-600');
-    }
 }
 
 function toggleMobileNav() {
     const menu = document.getElementById('mobile-nav-menu');
-    if (menu) {
-        menu.classList.toggle('hidden');
-    }
+    setMobileNavOpen(!menu?.classList.contains('is-open'));
+}
+
+function setMobileNavOpen(isOpen) {
+    const menu = document.getElementById('mobile-nav-menu');
+    const button = document.getElementById('mobile-menu-toggle');
+    const icon = document.getElementById('mobile-menu-icon');
+    if (!menu || !button) return;
+
+    menu.classList.toggle('is-open', isOpen);
+    menu.setAttribute('aria-hidden', String(!isOpen));
+    button.setAttribute('aria-expanded', String(isOpen));
+    button.setAttribute('aria-label', isOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+    if (icon) icon.className = `fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'} text-xl`;
+}
+
+function handleMobileNavKeydown(event) {
+    if (event.key !== 'Escape') return;
+    const menu = document.getElementById('mobile-nav-menu');
+    if (!menu || !menu.classList.contains('is-open')) return;
+    setMobileNavOpen(false);
+    document.getElementById('mobile-menu-toggle')?.focus();
 }
 
 function updateAgeLabels(ageValue) {
@@ -850,13 +885,13 @@ function renderCategoryFilterButtons() {
     if (!container) return;
 
     let html = `
-                <button onclick="setCategoryFilter('all')" class="cat-btn px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${currentState.selectedCategory === 'all' ? 'bg-gizi-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                <button type="button" aria-pressed="${currentState.selectedCategory === 'all'}" onclick="setCategoryFilter('all')" class="cat-btn category-choice rounded-xl px-3 py-2 text-left text-xs font-bold transition-all sm:text-center ${currentState.selectedCategory === 'all' ? 'bg-gizi-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
                     Semua
                 </button>
             `;
 
     html += AppData.categories.map(cat => `
-                <button onclick="setCategoryFilter('${cat.id}')" class="cat-btn px-3 py-1.5 rounded-xl text-xs font-bold capitalize transition-all ${currentState.selectedCategory === cat.id ? 'bg-gizi-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                <button type="button" aria-pressed="${currentState.selectedCategory === cat.id}" onclick="setCategoryFilter('${cat.id}')" class="cat-btn category-choice rounded-xl px-3 py-2 text-left text-xs font-bold capitalize transition-all sm:text-center ${currentState.selectedCategory === cat.id ? 'bg-gizi-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
                     ${cat.name}
                 </button>
             `).join('');
@@ -873,9 +908,12 @@ function updateBudgetDisplay(val) {
 }
 
 function setCategoryFilter(catId) {
+    const isValidCategory = catId === 'all' || AppData.categories.some(category => category.id === catId);
+    if (!isValidCategory) {
+        console.warn(`Unknown recipe category: ${catId}`);
+        return;
+    }
     currentState.selectedCategory = catId;
-    const dd = document.getElementById('category-dropdown');
-    if (dd) dd.value = catId;
 
     renderCategoryFilterButtons();
     handleFilterChange();
@@ -901,9 +939,6 @@ function resetFilters() {
     const searchInput = document.getElementById('search-input');
     if (searchInput) searchInput.value = '';
 
-    const catDD = document.getElementById('category-dropdown');
-    if (catDD) catDD.value = 'all';
-
     renderCategoryFilterButtons();
     renderDashboardRecipes();
 }
@@ -926,22 +961,19 @@ function createRecipeCardHTML(rcp) {
 
     return `
                 <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col group">
-                    <div role="button" tabindex="0" aria-label="Lihat detail ${rcp.title}" onkeydown="handleModalTriggerKeydown(event)" class="relative flex h-40 w-full cursor-pointer items-center justify-center overflow-hidden ${visual.background}" onclick="openRecipeModal('${rcp.id}', event)">
-                        <i class="fa-solid ${visual.icon} text-5xl ${visual.foreground}" aria-hidden="true"></i>
-                        <span class="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-slate-600">${rcp.ageRangeLabel || 'Semua usia'}</span>
-
-                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-gizi-600 text-white shadow-md">
-                            ${rcp.category}
-                        </span>
-
-                        <button onclick="event.stopPropagation(); toggleFavorite('${rcp.id}');" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-slate-700 flex items-center justify-center shadow-md backdrop-blur-md transition-all">
-                            <i class="${isFav ? 'fa-solid text-red-500' : 'fa-regular'} fa-heart text-sm"></i>
+                    <div class="relative h-40 w-full overflow-hidden">
+                        <button type="button" aria-label="Lihat detail ${rcp.title}" onclick="openRecipeModal('${rcp.id}', event)" class="absolute inset-0 flex cursor-pointer items-center justify-center overflow-hidden ${visual.background}">
+                            <i class="fa-solid ${visual.icon} text-5xl ${visual.foreground}" aria-hidden="true"></i>
+                            <span class="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-slate-600">${rcp.ageRangeLabel || 'Semua usia'}</span>
+                            <span class="absolute top-3 left-3 rounded-full bg-gizi-600 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white shadow-md">${rcp.category}</span>
+                            <span class="absolute bottom-3 right-3 rounded-xl bg-white/90 px-3 py-2 text-right">
+                                <span class="block text-[10px] font-semibold uppercase text-slate-500">Perkiraan / resep</span>
+                                <span class="block text-base font-extrabold text-slate-900">${formattedPrice}</span>
+                            </span>
                         </button>
-
-                        <div class="absolute bottom-3 right-3 rounded-xl bg-white/90 px-3 py-2 text-right">
-                            <div class="text-[10px] font-semibold uppercase text-slate-500">Perkiraan / resep</div>
-                            <div class="text-base font-extrabold text-slate-900">${formattedPrice}</div>
-                        </div>
+                        <button type="button" aria-label="${isFav ? 'Hapus dari' : 'Simpan ke'} favorit: ${rcp.title}" aria-pressed="${isFav}" onclick="toggleFavorite('${rcp.id}')" class="absolute right-3 top-3 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-md backdrop-blur-md transition-all hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gizi-600">
+                            <i class="${isFav ? 'fa-solid text-red-500' : 'fa-regular'} fa-heart text-sm" aria-hidden="true"></i>
+                        </button>
                     </div>
 
                     <div class="p-5 flex-grow flex flex-col justify-between">
@@ -954,7 +986,7 @@ function createRecipeCardHTML(rcp) {
 
                         <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                             <span><i class="fa-regular fa-clock mr-1 text-gizi-600"></i>${rcp.cookTime}</span>
-                            <button onclick="openRecipeModal('${rcp.id}', event)" class="font-bold text-gizi-600 hover:text-gizi-700 flex items-center">
+                            <button onclick="openRecipeModal('${rcp.id}', event)" class="touch-target px-2 -mr-2 font-bold text-gizi-600 hover:text-gizi-700 flex items-center">
                                 Detail Resep <i class="fa-solid fa-angle-right ml-1 text-[10px]"></i>
                             </button>
                         </div>
@@ -1053,14 +1085,33 @@ function renderTeamMembers() {
     if (!container) return;
 
     container.innerHTML = AppData.team.map(m => `
-                <div class="flex flex-col items-center rounded-2xl border border-slate-200/80 bg-white p-6 text-center shadow-sm">
-                    <div class="mb-4 flex h-24 w-24 items-center justify-center rounded-2xl bg-gizi-100 text-2xl font-extrabold text-gizi-700" aria-hidden="true">
-                        ${m.name.split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase()}
+                <article class="flex flex-col items-center rounded-2xl border border-slate-200/80 bg-white p-6 text-center shadow-sm">
+                    <div class="team-member-photo relative mb-4 flex h-28 w-28 items-center justify-center overflow-hidden rounded-full bg-gizi-100 text-2xl font-extrabold text-gizi-700 shadow-sm">
+                        ${m.image ? `<img src="${m.image}" alt="Foto ${m.name}" class="absolute inset-0 h-full w-full object-cover" onerror="this.hidden=true; this.nextElementSibling.hidden=false">` : ''}
+                        <span ${m.image ? 'hidden' : ''} aria-hidden="true">${m.name.split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase()}</span>
                     </div>
                     <h3 class="font-extrabold text-slate-900 text-base">${m.name}</h3>
-                    <p class="mt-1 text-xs font-semibold text-gizi-700">${m.role}</p>
-                </div>
+                    <p class="mt-1 inline-flex rounded-full ${m.role === 'Ketua Kelompok' ? 'bg-amber-100 text-amber-800' : 'bg-gizi-50 text-gizi-700'} px-3 py-1 text-xs font-bold">${m.role}</p>
+                </article>
             `).join('');
+
+    const contactContainer = document.getElementById('team-contact-links');
+    if (contactContainer) {
+        contactContainer.innerHTML = `
+            <a href="${teamContactLinks.instagram}" target="_blank" rel="noopener noreferrer"
+                class="touch-target inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm hover:border-pink-200 hover:bg-pink-50 hover:text-pink-700">
+                <i class="fa-brands fa-instagram text-pink-600" aria-hidden="true"></i>Instagram
+            </a>
+            <a href="${teamContactLinks.whatsapp}" target="_blank" rel="noopener noreferrer"
+                class="touch-target inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700">
+                <i class="fa-brands fa-whatsapp text-emerald-600" aria-hidden="true"></i>WhatsApp
+            </a>
+            <a href="${teamContactLinks.schoolWebsite}" target="_blank" rel="noopener noreferrer"
+                class="touch-target inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm hover:border-sky-200 hover:bg-sky-50 hover:text-sky-700">
+                <i class="fa-solid fa-globe text-sky-600" aria-hidden="true"></i>Website SMK
+            </a>
+        `;
+    }
 }
 
 // MODALS CONTROL
