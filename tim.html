@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dapur Gizi Banjarnegara menyediakan contoh menu bergizi dan alat bantu skrining pertumbuhan anak berdasarkan standar WHO.">
+    <meta name="description"
+        content="Dapur Gizi Banjarnegara menyediakan contoh menu bergizi dan alat bantu skrining pertumbuhan anak berdasarkan standar WHO.">
     <meta name="theme-color" content="#16a34a">
     <title>Kelompok Kami - Dapur Gizi Banjarnegara</title>
 
@@ -12,51 +14,67 @@
     <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="./css/custom.css">
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-gizi-500 selection:text-white min-h-screen flex flex-col">
-<header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all duration-200">
+
+<body
+    class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-gizi-500 selection:text-white min-h-screen flex flex-col">
+    <header
+        class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all duration-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
 
                 <!-- Logo -->
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-gizi-600 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-gizi-600/30">
+                    <div
+                        class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-gizi-600 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-gizi-600/30">
                         <i class="fa-solid fa-utensils text-xl"></i>
                     </div>
                     <div>
-                        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-gizi-800 via-gizi-600 to-emerald-500 bg-clip-text text-transparent">Dapur Gizi</span>
-                        <span class="block text-[10px] font-semibold tracking-wider text-slate-400 uppercase">Gizi &amp; Tumbuh Kembang Banjarnegara</span>
+                        <span
+                            class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-gizi-800 via-gizi-600 to-emerald-500 bg-clip-text text-transparent">Dapur
+                            Gizi</span>
+                        <span class="block text-[10px] font-semibold tracking-wider text-slate-400 uppercase">Gizi &amp;
+                            Tumbuh Kembang Banjarnegara</span>
                     </div>
                 </div>
 
                 <!-- Desktop Nav Tabs -->
                 <nav class="hidden md:flex items-center space-x-1">
-                    <a href="./dapur_gizi_application.html" id="nav-home" class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-gizi-700 bg-gizi-50">
+                    <a href="./index.html" id="nav-home"
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-gizi-700 bg-gizi-50">
                         <i class="fa-solid fa-house mr-2"></i>Beranda
                     </a>
-                    <a href="./cek-stunting.html" id="nav-stunting" class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
+                    <a href="./cek-stunting.html" id="nav-stunting"
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-child-reaching mr-2 text-amber-500"></i>Cek Stunting
                     </a>
-                    <a href="./resep.html" id="nav-dashboard" class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
+                    <a href="./resep.html" id="nav-dashboard"
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-chart-line mr-2"></i>Dashboard & Resep
                     </a>
-                    <a href="./favorit.html" id="nav-favorites" class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
+                    <a href="./favorit.html" id="nav-favorites"
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-heart text-red-500 mr-2"></i>Favorit (<span id="fav-count">0</span>)
                     </a>
-                    <a href="./tim.html" id="nav-admin" class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
+                    <a href="./tim.html" id="nav-admin"
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-users mr-2"></i>Kelompok Kami
                     </a>
                 </nav>
 
                 <!-- Mobile Header Right Actions -->
                 <div class="flex md:hidden items-center space-x-2">
-                    <a href="./cek-stunting.html" class="px-3 py-1.5 text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200 rounded-xl flex items-center">
+                    <a href="./cek-stunting.html"
+                        class="px-3 py-1.5 text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200 rounded-xl flex items-center">
                         <i class="fa-solid fa-child-reaching mr-1.5 text-amber-500"></i>Cek Stunting
                     </a>
-                    <a href="./favorit.html" class="p-2.5 text-slate-600 hover:text-red-500 rounded-xl bg-slate-100 relative">
+                    <a href="./favorit.html"
+                        class="p-2.5 text-slate-600 hover:text-red-500 rounded-xl bg-slate-100 relative">
                         <i class="fa-solid fa-heart text-lg"></i>
-                        <span id="fav-count-mobile" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                        <span id="fav-count-mobile"
+                            class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
                     </a>
-                    <button onclick="toggleMobileNav()" class="p-2.5 text-slate-700 rounded-xl bg-slate-100 hover:bg-slate-200">
+                    <button onclick="toggleMobileNav()"
+                        class="p-2.5 text-slate-700 rounded-xl bg-slate-100 hover:bg-slate-200">
                         <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
                     </button>
                 </div>
@@ -64,19 +82,24 @@
 
             <!-- Mobile Navigation Menu Dropdown -->
             <div id="mobile-nav-menu" class="hidden md:hidden border-t border-slate-200 py-3 space-y-1">
-                <a href="./dapur_gizi_application.html" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                <a href="./index.html"
+                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-house w-6 text-gizi-600"></i>Beranda
                 </a>
-                <a href="./cek-stunting.html" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-amber-700 bg-amber-50 hover:bg-amber-100">
+                <a href="./cek-stunting.html"
+                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-amber-700 bg-amber-50 hover:bg-amber-100">
                     <i class="fa-solid fa-child-reaching w-6 text-amber-500"></i>Kalkulator Cek Stunting Balita
                 </a>
-                <a href="./resep.html" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                <a href="./resep.html"
+                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-chart-line w-6 text-gizi-600"></i>Dashboard & Katalog Resep
                 </a>
-                <a href="./favorit.html" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                <a href="./favorit.html"
+                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-heart w-6 text-red-500"></i>Resep Favorit Saya
                 </a>
-                <a href="./tim.html" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                <a href="./tim.html"
+                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-users w-6 text-gizi-600"></i>Kelompok Kami
                 </a>
             </div>
@@ -88,9 +111,11 @@
 
                 <!-- Header -->
                 <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                    <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-gizi-100 text-gizi-800">Profil Kelompok</span>
+                    <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-gizi-100 text-gizi-800">Profil
+                        Kelompok</span>
                     <h1 class="text-3xl sm:text-4xl font-black text-slate-900">Tim Dapur Gizi</h1>
-                    <p class="text-slate-600 text-sm sm:text-base">Dapur Gizi dikerjakan bersama oleh tiga anggota kelompok.</p>
+                    <p class="text-slate-600 text-sm sm:text-base">Dapur Gizi dikerjakan bersama oleh tiga anggota
+                        kelompok.</p>
                 </div>
 
                 <!-- Team Section -->
@@ -99,7 +124,8 @@
                         <i class="fa-solid fa-users text-gizi-600 mr-2.5"></i>Anggota Kelompok Dapur Gizi
                     </h2>
 
-                    <div class="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="team-members-grid">
+                    <div class="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                        id="team-members-grid">
                         <!-- Dynamic team list -->
                     </div>
                 </div>
@@ -108,25 +134,32 @@
         </section>
     </main>
     <!-- RECIPE DETAIL MODAL POPUP -->
-    <div id="recipe-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-recipe-title" tabindex="-1" onclick="handleModalBackdrop(event, 'recipe-modal')" class="popup-overlay fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-        <div class="popup-panel bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 transform transition-all relative" tabindex="-1">
+    <div id="recipe-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-recipe-title"
+        tabindex="-1" onclick="handleModalBackdrop(event, 'recipe-modal')"
+        class="popup-overlay fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div class="popup-panel bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 transform transition-all relative"
+            tabindex="-1">
 
             <!-- Close Button -->
-            <button aria-label="Tutup detail resep" onclick="closeModal('recipe-modal')" class="absolute top-4 right-4 z-10 w-9 h-9 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-all">
+            <button aria-label="Tutup detail resep" onclick="closeModal('recipe-modal')"
+                class="absolute top-4 right-4 z-10 w-9 h-9 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-all">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <!-- Modal Content Header -->
             <div class="relative h-64 sm:h-72 w-full">
-                <div id="modal-recipe-visual" class="relative flex h-64 w-full items-center justify-center bg-gizi-50 sm:h-72">
-                    <i id="modal-recipe-icon" class="fa-solid fa-utensils text-6xl text-gizi-600" aria-hidden="true"></i>
+                <div id="modal-recipe-visual"
+                    class="relative flex h-64 w-full items-center justify-center bg-gizi-50 sm:h-72">
+                    <i id="modal-recipe-icon" class="fa-solid fa-utensils text-6xl text-gizi-600"
+                        aria-hidden="true"></i>
                 </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
 
                 <!-- Recipe cost estimate -->
                 <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
                     <div>
-                        <span id="modal-recipe-cat" class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-gizi-500 text-white shadow-md"></span>
+                        <span id="modal-recipe-cat"
+                            class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-gizi-500 text-white shadow-md"></span>
                         <h2 id="modal-recipe-title" class="text-2xl font-black text-white mt-1"></h2>
                     </div>
                     <div class="text-right">
@@ -167,9 +200,11 @@
                 <!-- Unified Ingredients List -->
                 <div>
                     <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider mb-3 flex items-center">
-                        <i class="fa-solid fa-basket-shopping text-gizi-600 mr-2"></i>Bahan-bahan (Satuan Baku: gram, ml, porsi)
+                        <i class="fa-solid fa-basket-shopping text-gizi-600 mr-2"></i>Bahan-bahan (Satuan Baku: gram,
+                        ml, porsi)
                     </h3>
-                    <ul id="modal-recipe-ingredients" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-700">
+                    <ul id="modal-recipe-ingredients"
+                        class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-700">
                         <!-- Ingredients list -->
                     </ul>
                 </div>
@@ -186,11 +221,13 @@
 
                 <!-- Footer Action Buttons -->
                 <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <button id="modal-fav-btn" onclick="" class="px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold flex items-center space-x-2 text-slate-700 hover:bg-slate-50">
+                    <button id="modal-fav-btn" onclick=""
+                        class="px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold flex items-center space-x-2 text-slate-700 hover:bg-slate-50">
                         <i class="fa-regular fa-heart text-red-500"></i>
                         <span id="modal-fav-text">Simpan Favorit</span>
                     </button>
-                    <button onclick="closeModal('recipe-modal')" class="px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800">
+                    <button onclick="closeModal('recipe-modal')"
+                        class="px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800">
                         Tutup
                     </button>
                 </div>
@@ -201,15 +238,21 @@
     </div>
 
     <!-- CATEGORY SAFE FOOD MODAL POPUP -->
-    <div id="category-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-cat-title" tabindex="-1" onclick="handleModalBackdrop(event, 'category-modal')" class="popup-overlay fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="popup-panel bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative" tabindex="-1">
+    <div id="category-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-cat-title"
+        tabindex="-1" onclick="handleModalBackdrop(event, 'category-modal')"
+        class="popup-overlay fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="popup-panel bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative"
+            tabindex="-1">
 
-            <button aria-label="Tutup pilihan kategori" onclick="closeModal('category-modal')" class="absolute top-4 right-4 w-8 h-8 bg-slate-100 text-slate-500 hover:text-slate-800 rounded-full flex items-center justify-center">
+            <button aria-label="Tutup pilihan kategori" onclick="closeModal('category-modal')"
+                class="absolute top-4 right-4 w-8 h-8 bg-slate-100 text-slate-500 hover:text-slate-800 rounded-full flex items-center justify-center">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="flex items-center space-x-3 mb-4">
-                <div id="modal-cat-icon" class="w-12 h-12 rounded-2xl bg-gizi-100 text-gizi-700 flex items-center justify-center text-xl font-bold"></div>
+                <div id="modal-cat-icon"
+                    class="w-12 h-12 rounded-2xl bg-gizi-100 text-gizi-700 flex items-center justify-center text-xl font-bold">
+                </div>
                 <div>
                     <h3 id="modal-cat-title" class="text-xl font-black text-slate-900 capitalize"></h3>
                     <span class="text-xs text-emerald-600 font-semibold">Contoh pilihan bahan pangan</span>
@@ -220,14 +263,16 @@
 
             <!-- Bullet / Bulet-bulet Food List -->
             <div class="mb-6">
-                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3">Contoh bahan pangan yang dapat dipilih:</h4>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3">Contoh bahan pangan yang
+                    dapat dipilih:</h4>
                 <div id="modal-cat-bullets" class="space-y-2">
                     <!-- Dynamic bullet pills -->
                 </div>
             </div>
 
             <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                <button onclick="closeModal('category-modal'); viewCategoryRecipes();" class="px-5 py-2.5 bg-gizi-600 text-white font-bold text-xs rounded-xl hover:bg-gizi-700">
+                <button onclick="closeModal('category-modal'); viewCategoryRecipes();"
+                    class="px-5 py-2.5 bg-gizi-600 text-white font-bold text-xs rounded-xl hover:bg-gizi-700">
                     Lihat Resep Kategori Ini
                 </button>
             </div>
@@ -235,7 +280,7 @@
     </div>
 
     <!-- FOOTER -->
-<footer class="bg-slate-900 text-slate-300 pt-12 pb-8 border-t border-slate-800">
+    <footer class="bg-slate-900 text-slate-300 pt-12 pb-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-slate-800">
 
@@ -247,35 +292,46 @@
                         <span class="text-xl font-extrabold text-white">Dapur Gizi Banjarnegara</span>
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
-                        Situs edukasi dengan contoh menu dan kalkulator pertumbuhan berbasis tabel WHO. Hasil skrining perlu dikonfirmasi oleh tenaga kesehatan.
+                        Situs edukasi dengan contoh menu dan kalkulator pertumbuhan berbasis tabel WHO. Hasil skrining
+                        perlu dikonfirmasi oleh tenaga kesehatan.
                     </p>
                 </div>
 
                 <div class="md:col-span-3 space-y-3">
                     <h4 class="text-sm font-bold text-white uppercase tracking-wider">Kategori Gizi</h4>
                     <ul class="space-y-2 text-xs text-slate-400">
-                        <li><a href="javascript:void(0)" onclick="openCategoryModal('bayi MPASI')" class="hover:text-gizi-400">Bayi MPASI</a></li>
-                        <li><a href="javascript:void(0)" onclick="openCategoryModal('ibu hamil')" class="hover:text-gizi-400">Ibu Hamil</a></li>
-                        <li><a href="javascript:void(0)" onclick="openCategoryModal('menyusui')" class="hover:text-gizi-400">Ibu Menyusui</a></li>
-                        <li><a href="javascript:void(0)" onclick="openCategoryModal('dewasa')" class="hover:text-gizi-400">Dewasa Sehat</a></li>
-                        <li><a href="javascript:void(0)" onclick="openCategoryModal('keluarga')" class="hover:text-gizi-400">Menu Keluarga</a></li>
+                        <li><a href="javascript:void(0)" onclick="openCategoryModal('bayi MPASI')"
+                                class="hover:text-gizi-400">Bayi MPASI</a></li>
+                        <li><a href="javascript:void(0)" onclick="openCategoryModal('ibu hamil')"
+                                class="hover:text-gizi-400">Ibu Hamil</a></li>
+                        <li><a href="javascript:void(0)" onclick="openCategoryModal('menyusui')"
+                                class="hover:text-gizi-400">Ibu Menyusui</a></li>
+                        <li><a href="javascript:void(0)" onclick="openCategoryModal('dewasa')"
+                                class="hover:text-gizi-400">Dewasa Sehat</a></li>
+                        <li><a href="javascript:void(0)" onclick="openCategoryModal('keluarga')"
+                                class="hover:text-gizi-400">Menu Keluarga</a></li>
                     </ul>
                 </div>
 
                 <div class="md:col-span-4 space-y-3">
-                    <h4 class="text-sm font-bold text-white uppercase tracking-wider">20 Kecamatan Kabupaten Banjarnegara</h4>
-                    <p class="pt-1 text-xs leading-relaxed text-slate-400">Banjarnegara, Banjarmangu, Batur, Bawang, Kalibening, Karangkobar, Madukara, Mandiraja, Pagedongan, Pagentan, Pandanarum, Pejawaran, Punggelan, Purwanegara, Purwareja Klampok, Rakit, Sigaluh, Susukan, Wanadadi, dan Wanayasa.</p>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider">20 Kecamatan Kabupaten
+                        Banjarnegara</h4>
+                    <p class="pt-1 text-xs leading-relaxed text-slate-400">Banjarnegara, Banjarmangu, Batur, Bawang,
+                        Kalibening, Karangkobar, Madukara, Mandiraja, Pagedongan, Pagentan, Pandanarum, Pejawaran,
+                        Punggelan, Purwanegara, Purwareja Klampok, Rakit, Sigaluh, Susukan, Wanadadi, dan Wanayasa.</p>
                 </div>
 
             </div>
 
             <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
                 <p>&copy; 2026 Dapur Gizi SMK. All rights reserved.</p>
-                <p class="mt-2 sm:mt-0">Didesain dengan <i class="fa-solid fa-heart text-red-500"></i> untuk edukasi gizi keluarga Banjarnegara</p>
+                <p class="mt-2 sm:mt-0">Didesain dengan <i class="fa-solid fa-heart text-red-500"></i> untuk edukasi
+                    gizi keluarga Banjarnegara</p>
             </div>
         </div>
     </footer>
     <script src="./js/growth-reference.js"></script>
     <script src="./js/app.js"></script>
 </body>
+
 </html>

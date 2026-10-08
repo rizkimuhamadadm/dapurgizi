@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dapur Gizi Banjarnegara menyediakan contoh menu bergizi dan alat bantu skrining pertumbuhan anak berdasarkan standar WHO.">
+    <meta name="description"
+        content="Dapur Gizi Banjarnegara menyediakan contoh menu bergizi dan alat bantu skrining pertumbuhan anak berdasarkan standar WHO.">
     <meta name="theme-color" content="#16a34a">
     <title>Cek Pertumbuhan - Dapur Gizi Banjarnegara</title>
 
@@ -12,51 +14,67 @@
     <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="./css/custom.css">
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-gizi-500 selection:text-white min-h-screen flex flex-col">
-<header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all duration-200">
+
+<body
+    class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-gizi-500 selection:text-white min-h-screen flex flex-col">
+    <header
+        class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all duration-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
 
                 <!-- Logo -->
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-gizi-600 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-gizi-600/30">
+                    <div
+                        class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-gizi-600 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-gizi-600/30">
                         <i class="fa-solid fa-utensils text-xl"></i>
                     </div>
                     <div>
-                        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-gizi-800 via-gizi-600 to-emerald-500 bg-clip-text text-transparent">Dapur Gizi</span>
-                        <span class="block text-[10px] font-semibold tracking-wider text-slate-400 uppercase">Gizi &amp; Tumbuh Kembang Banjarnegara</span>
+                        <span
+                            class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-gizi-800 via-gizi-600 to-emerald-500 bg-clip-text text-transparent">Dapur
+                            Gizi</span>
+                        <span class="block text-[10px] font-semibold tracking-wider text-slate-400 uppercase">Gizi &amp;
+                            Tumbuh Kembang Banjarnegara</span>
                     </div>
                 </div>
 
                 <!-- Desktop Nav Tabs -->
                 <nav class="hidden md:flex items-center space-x-1">
-                    <a href="./dapur_gizi_application.html" id="nav-home" class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-gizi-700 bg-gizi-50">
+                    <a href="./index.html" id="nav-home"
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-gizi-700 bg-gizi-50">
                         <i class="fa-solid fa-house mr-2"></i>Beranda
                     </a>
-                    <a href="./cek-stunting.html" id="nav-stunting" class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
+                    <a href="./cek-stunting.html" id="nav-stunting"
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-child-reaching mr-2 text-amber-500"></i>Cek Stunting
                     </a>
-                    <a href="./resep.html" id="nav-dashboard" class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
+                    <a href="./resep.html" id="nav-dashboard"
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-chart-line mr-2"></i>Dashboard & Resep
                     </a>
-                    <a href="./favorit.html" id="nav-favorites" class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
+                    <a href="./favorit.html" id="nav-favorites"
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-heart text-red-500 mr-2"></i>Favorit (<span id="fav-count">0</span>)
                     </a>
-                    <a href="./tim.html" id="nav-admin" class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
+                    <a href="./tim.html" id="nav-admin"
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-users mr-2"></i>Kelompok Kami
                     </a>
                 </nav>
 
                 <!-- Mobile Header Right Actions -->
                 <div class="flex md:hidden items-center space-x-2">
-                    <a href="./cek-stunting.html" class="px-3 py-1.5 text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200 rounded-xl flex items-center">
+                    <a href="./cek-stunting.html"
+                        class="px-3 py-1.5 text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200 rounded-xl flex items-center">
                         <i class="fa-solid fa-child-reaching mr-1.5 text-amber-500"></i>Cek Stunting
                     </a>
-                    <a href="./favorit.html" class="p-2.5 text-slate-600 hover:text-red-500 rounded-xl bg-slate-100 relative">
+                    <a href="./favorit.html"
+                        class="p-2.5 text-slate-600 hover:text-red-500 rounded-xl bg-slate-100 relative">
                         <i class="fa-solid fa-heart text-lg"></i>
-                        <span id="fav-count-mobile" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                        <span id="fav-count-mobile"
+                            class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
                     </a>
-                    <button onclick="toggleMobileNav()" class="p-2.5 text-slate-700 rounded-xl bg-slate-100 hover:bg-slate-200">
+                    <button onclick="toggleMobileNav()"
+                        class="p-2.5 text-slate-700 rounded-xl bg-slate-100 hover:bg-slate-200">
                         <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
                     </button>
                 </div>
@@ -64,19 +82,24 @@
 
             <!-- Mobile Navigation Menu Dropdown -->
             <div id="mobile-nav-menu" class="hidden md:hidden border-t border-slate-200 py-3 space-y-1">
-                <a href="./dapur_gizi_application.html" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                <a href="./index.html"
+                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-house w-6 text-gizi-600"></i>Beranda
                 </a>
-                <a href="./cek-stunting.html" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-amber-700 bg-amber-50 hover:bg-amber-100">
+                <a href="./cek-stunting.html"
+                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-amber-700 bg-amber-50 hover:bg-amber-100">
                     <i class="fa-solid fa-child-reaching w-6 text-amber-500"></i>Kalkulator Cek Stunting Balita
                 </a>
-                <a href="./resep.html" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                <a href="./resep.html"
+                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-chart-line w-6 text-gizi-600"></i>Dashboard & Katalog Resep
                 </a>
-                <a href="./favorit.html" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                <a href="./favorit.html"
+                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-heart w-6 text-red-500"></i>Resep Favorit Saya
                 </a>
-                <a href="./tim.html" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
+                <a href="./tim.html"
+                    class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 hover:bg-gizi-50 hover:text-gizi-600">
                     <i class="fa-solid fa-users w-6 text-gizi-600"></i>Kelompok Kami
                 </a>
             </div>
@@ -88,40 +111,52 @@
 
                 <!-- Section Header -->
                 <div class="max-w-3xl mx-auto text-center mb-10 space-y-3">
-                    <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">
+                    <span
+                        class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">
                         <i class="fa-solid fa-notes-medical mr-1.5"></i>Estimasi Pertumbuhan Balita
                     </span>
-                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900">Kalkulator Deteksi Dini Stunting Balita</h1>
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900">Kalkulator Deteksi Dini Stunting Balita
+                    </h1>
                     <p class="text-slate-600 text-sm sm:text-base">
-                        Masukkan usia dalam bulan penuh, jenis kelamin, panjang/tinggi, dan berat anak untuk melihat indikator TB/U dan BB/U berbasis standar WHO.
+                        Masukkan usia dalam bulan penuh, jenis kelamin, panjang/tinggi, dan berat anak untuk melihat
+                        indikator TB/U dan BB/U berbasis standar WHO.
                     </p>
-                    <p class="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-left text-xs leading-relaxed text-amber-900">
-                        Hasil ini hanya perkiraan awal dan bukan diagnosis medis. Untuk penilaian pertumbuhan yang akurat, konsultasikan dengan tenaga kesehatan atau Posyandu.
+                    <p
+                        class="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-left text-xs leading-relaxed text-amber-900">
+                        Hasil ini hanya perkiraan awal dan bukan diagnosis medis. Untuk penilaian pertumbuhan yang
+                        akurat, konsultasikan dengan tenaga kesehatan atau Posyandu.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
                     <!-- Calculator Form Card -->
-                    <div class="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-md space-y-6">
+                    <div
+                        class="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-md space-y-6">
                         <h3 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center">
                             <i class="fa-solid fa-clipboard-user text-amber-500 mr-2.5"></i>Data Balita
                         </h3>
 
-                        <form id="stunting-form" oninput="clearScreeningResult()" onchange="clearScreeningResult()" onsubmit="event.preventDefault(); calculateStunting();" class="space-y-4">
+                        <form id="stunting-form" oninput="clearScreeningResult()" onchange="clearScreeningResult()"
+                            onsubmit="event.preventDefault(); calculateStunting();" class="space-y-4">
                             <!-- Jenis Kelamin -->
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Jenis Kelamin</label>
+                                <label
+                                    class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Jenis
+                                    Kelamin</label>
                                 <div class="grid grid-cols-2 gap-3">
                                     <label class="cursor-pointer">
-                                        <input type="radio" name="stunting-gender" value="male" checked class="peer sr-only">
-                                        <div class="p-3 text-center rounded-xl border border-slate-200 font-bold text-xs text-slate-600 peer-checked:bg-blue-50 peer-checked:border-blue-500 peer-checked:text-blue-700 transition-all">
+                                        <input type="radio" name="stunting-gender" value="male" checked
+                                            class="peer sr-only">
+                                        <div
+                                            class="p-3 text-center rounded-xl border border-slate-200 font-bold text-xs text-slate-600 peer-checked:bg-blue-50 peer-checked:border-blue-500 peer-checked:text-blue-700 transition-all">
                                             <i class="fa-solid fa-mars mr-1.5"></i>Laki-laki
                                         </div>
                                     </label>
                                     <label class="cursor-pointer">
                                         <input type="radio" name="stunting-gender" value="female" class="peer sr-only">
-                                        <div class="p-3 text-center rounded-xl border border-slate-200 font-bold text-xs text-slate-600 peer-checked:bg-pink-50 peer-checked:border-pink-500 peer-checked:text-pink-700 transition-all">
+                                        <div
+                                            class="p-3 text-center rounded-xl border border-slate-200 font-bold text-xs text-slate-600 peer-checked:bg-pink-50 peer-checked:border-pink-500 peer-checked:text-pink-700 transition-all">
                                             <i class="fa-solid fa-venus mr-1.5"></i>Perempuan
                                         </div>
                                     </label>
@@ -131,10 +166,15 @@
                             <!-- Usia (Bulan) -->
                             <div>
                                 <div class="flex justify-between items-center mb-1.5">
-                                    <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">Usia Balita (Bulan Penuh)</label>
-                                    <span id="age-display-val" class="text-xs font-extrabold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-lg border border-amber-200">12 Bulan</span>
+                                    <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">Usia Balita
+                                        (Bulan Penuh)</label>
+                                    <span id="age-display-val"
+                                        class="text-xs font-extrabold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-lg border border-amber-200">12
+                                        Bulan</span>
                                 </div>
-                                <input type="range" id="stunting-age" min="0" max="60" value="12" oninput="updateAgeLabels(this.value)" class="w-full h-2 bg-slate-200 rounded-lg accent-amber-500 cursor-pointer">
+                                <input type="range" id="stunting-age" min="0" max="60" value="12"
+                                    oninput="updateAgeLabels(this.value)"
+                                    class="w-full h-2 bg-slate-200 rounded-lg accent-amber-500 cursor-pointer">
                                 <div class="flex justify-between text-[10px] text-slate-400 font-semibold mt-1">
                                     <span>0 Bln (Baru Lahir)</span>
                                     <span>24 Bln (2 Thn)</span>
@@ -144,23 +184,34 @@
 
                             <!-- Tinggi and weight -->
                             <div>
-                                <label id="stunting-height-label" for="stunting-height" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Panjang badan (telentang) (cm)</label>
+                                <label id="stunting-height-label" for="stunting-height"
+                                    class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Panjang
+                                    badan (telentang) (cm)</label>
                                 <div class="relative">
-                                    <input type="number" id="stunting-height" step="0.1" min="30" max="130" placeholder="Contoh: 75.5" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none pr-12">
+                                    <input type="number" id="stunting-height" step="0.1" min="30" max="130"
+                                        placeholder="Contoh: 75.5" required
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none pr-12">
                                     <span class="absolute right-4 top-3 text-xs font-bold text-slate-400">cm</span>
                                 </div>
-                                <p id="measurement-hint" class="mt-1.5 text-xs text-slate-500">Usia di bawah 24 bulan: ukur panjang badan sambil berbaring.</p>
+                                <p id="measurement-hint" class="mt-1.5 text-xs text-slate-500">Usia di bawah 24 bulan:
+                                    ukur panjang badan sambil berbaring.</p>
                             </div>
                             <div>
-                                <label for="stunting-weight" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Berat Badan (kg)</label>
+                                <label for="stunting-weight"
+                                    class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Berat
+                                    Badan (kg)</label>
                                 <div class="relative">
-                                    <input type="number" id="stunting-weight" step="0.01" min="0.5" max="35" placeholder="Contoh: 8.2" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none pr-12">
+                                    <input type="number" id="stunting-weight" step="0.01" min="0.5" max="35"
+                                        placeholder="Contoh: 8.2" required
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none pr-12">
                                     <span class="absolute right-4 top-3 text-xs font-bold text-slate-400">kg</span>
                                 </div>
-                                <p class="mt-1.5 text-xs text-slate-500">Gunakan timbangan yang terkalibrasi dan timbang tanpa alas kaki/barang bawaan.</p>
+                                <p class="mt-1.5 text-xs text-slate-500">Gunakan timbangan yang terkalibrasi dan timbang
+                                    tanpa alas kaki/barang bawaan.</p>
                             </div>
 
-                            <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-black shadow-md shadow-amber-500/20 transition-all text-sm">
+                            <button type="submit"
+                                class="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-black shadow-md shadow-amber-500/20 transition-all text-sm">
                                 <i class="fa-solid fa-magnifying-glass-chart mr-2"></i>Analisis Status Gizi Anak
                             </button>
                         </form>
@@ -170,15 +221,19 @@
                     <div class="lg:col-span-6 space-y-6">
 
                         <!-- Dynamic Result Container -->
-                        <div id="stunting-result-card" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-md min-h-[380px] flex flex-col justify-center">
+                        <div id="stunting-result-card"
+                            class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-md min-h-[380px] flex flex-col justify-center">
 
                             <!-- Initial Placeholder State -->
                             <div id="result-placeholder" class="text-center py-10">
-                                <div class="w-16 h-16 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-4 text-2xl">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-4 text-2xl">
                                     <i class="fa-solid fa-child"></i>
                                 </div>
-                                <h4 class="font-extrabold text-slate-800 text-base">Hasil Skrining Akan Muncul Di Sini</h4>
-                                <p class="text-xs text-slate-400 max-w-xs mx-auto mt-1">Isi formulir di sebelah kiri untuk melihat z-score tinggi/panjang menurut umur dan berat menurut umur.</p>
+                                <h4 class="font-extrabold text-slate-800 text-base">Hasil Skrining Akan Muncul Di Sini
+                                </h4>
+                                <p class="text-xs text-slate-400 max-w-xs mx-auto mt-1">Isi formulir di sebelah kiri
+                                    untuk melihat z-score tinggi/panjang menurut umur dan berat menurut umur.</p>
                             </div>
 
                             <!-- Calculated Output Container (Hidden initially) -->
@@ -186,58 +241,80 @@
 
                                 <div class="flex items-center justify-between border-b border-slate-100 pb-4">
                                     <div>
-                                        <span class="text-xs font-bold text-slate-400 uppercase">Hasil Analisis Balita</span>
-                                        <h3 id="res-heading" class="text-xl font-black text-slate-900">Hasil Skrining TB/U</h3>
+                                        <span class="text-xs font-bold text-slate-400 uppercase">Hasil Analisis
+                                            Balita</span>
+                                        <h3 id="res-heading" class="text-xl font-black text-slate-900">Hasil Skrining
+                                            TB/U</h3>
                                     </div>
-                                    <span id="res-status-badge" class="px-3 py-1.5 rounded-full text-xs font-black shadow-sm">
+                                    <span id="res-status-badge"
+                                        class="px-3 py-1.5 rounded-full text-xs font-black shadow-sm">
                                         <!-- Dynamic status badge -->
                                     </span>
                                 </div>
 
-                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200/60 text-center">
+                                <div
+                                    class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200/60 text-center">
                                     <div>
-                                        <span class="block text-[10px] uppercase font-bold text-slate-400">Usia &amp; Gender</span>
-                                        <span id="res-meta-age" class="text-xs font-bold text-slate-800">12 Bulan / Laki-laki</span>
+                                        <span class="block text-[10px] uppercase font-bold text-slate-400">Usia &amp;
+                                            Gender</span>
+                                        <span id="res-meta-age" class="text-xs font-bold text-slate-800">12 Bulan /
+                                            Laki-laki</span>
                                     </div>
                                     <div>
-                                        <span class="block text-[10px] uppercase font-bold text-slate-400">Z-Score TB/U</span>
-                                        <span id="res-zscore" class="text-xs font-extrabold text-gizi-700">-0.8 SD</span>
+                                        <span class="block text-[10px] uppercase font-bold text-slate-400">Z-Score
+                                            TB/U</span>
+                                        <span id="res-zscore" class="text-xs font-extrabold text-gizi-700">-0.8
+                                            SD</span>
                                     </div>
                                     <div>
-                                        <span class="block text-[10px] uppercase font-bold text-slate-400">Z-Score BB/U</span>
+                                        <span class="block text-[10px] uppercase font-bold text-slate-400">Z-Score
+                                            BB/U</span>
                                         <span id="res-waz" class="text-xs font-extrabold text-gizi-700">-0.8 SD</span>
-                                        <span id="res-waz-status" class="mt-1 block text-[10px] font-bold text-slate-600"></span>
+                                        <span id="res-waz-status"
+                                            class="mt-1 block text-[10px] font-bold text-slate-600"></span>
                                     </div>
                                 </div>
 
                                 <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-2">
-                                        <h4 class="font-extrabold text-gizi-800 text-xs uppercase tracking-wider flex items-center">
-                                            <i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i>Catatan Hasil Skrining
-                                        </h4>
-                                        <p id="res-advice" class="text-xs text-slate-700 leading-relaxed"></p>
-                                    </div>
-                                    <p id="res-weight-advice" class="text-xs leading-relaxed text-slate-600"></p>
+                                    <h4
+                                        class="font-extrabold text-gizi-800 text-xs uppercase tracking-wider flex items-center">
+                                        <i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i>Catatan Hasil Skrining
+                                    </h4>
+                                    <p id="res-advice" class="text-xs text-slate-700 leading-relaxed"></p>
+                                </div>
+                                <p id="res-weight-advice" class="text-xs leading-relaxed text-slate-600"></p>
 
-                                    <div id="stunting-recipe-recommendations" class="hidden"></div>
+                                <div id="stunting-recipe-recommendations" class="hidden"></div>
 
                             </div>
 
                         </div>
 
                         <!-- WHO Standard Info Box -->
-                        <div class="bg-gradient-to-br from-slate-900 to-gizi-950 text-white p-6 rounded-3xl shadow-sm space-y-3">
+                        <div
+                            class="bg-gradient-to-br from-slate-900 to-gizi-950 text-white p-6 rounded-3xl shadow-sm space-y-3">
                             <h4 class="font-bold text-sm flex items-center text-amber-400">
                                 <i class="fa-solid fa-circle-info mr-2"></i>Rentang z-score WHO
                             </h4>
                             <ul class="text-xs space-y-2 text-slate-300">
-                                <li class="flex items-start"><span class="w-3 h-3 rounded-full bg-red-500 shrink-0 mt-0.5 mr-2"></span><strong>Sangat pendek:</strong> di bawah -3 SD</li>
-                                <li class="flex items-start"><span class="w-3 h-3 rounded-full bg-amber-500 shrink-0 mt-0.5 mr-2"></span><strong>Pendek:</strong> -3 SD hingga di bawah -2 SD</li>
-                                <li class="flex items-start"><span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0 mt-0.5 mr-2"></span><strong>Rentang normal:</strong> -2 SD hingga +3 SD</li>
+                                <li class="flex items-start"><span
+                                        class="w-3 h-3 rounded-full bg-red-500 shrink-0 mt-0.5 mr-2"></span><strong>Sangat
+                                        pendek:</strong> di bawah -3 SD</li>
+                                <li class="flex items-start"><span
+                                        class="w-3 h-3 rounded-full bg-amber-500 shrink-0 mt-0.5 mr-2"></span><strong>Pendek:</strong>
+                                    -3 SD hingga di bawah -2 SD</li>
+                                <li class="flex items-start"><span
+                                        class="w-3 h-3 rounded-full bg-emerald-500 shrink-0 mt-0.5 mr-2"></span><strong>Rentang
+                                        normal:</strong> -2 SD hingga +3 SD</li>
                             </ul>
-                            <a href="https://www.who.int/tools/child-growth-standards/standards/length-height-for-age" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-amber-300 hover:text-white">
+                            <a href="https://www.who.int/tools/child-growth-standards/standards/length-height-for-age"
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center text-xs font-bold text-amber-300 hover:text-white">
                                 Sumber tabel TB/U WHO <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
                             </a>
-                            <a href="https://www.who.int/tools/child-growth-standards/standards/weight-for-age" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-amber-300 hover:text-white">
+                            <a href="https://www.who.int/tools/child-growth-standards/standards/weight-for-age"
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center text-xs font-bold text-amber-300 hover:text-white">
                                 Sumber tabel BB/U WHO <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
                             </a>
                         </div>
@@ -250,25 +327,32 @@
         </section>
     </main>
     <!-- RECIPE DETAIL MODAL POPUP -->
-    <div id="recipe-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-recipe-title" tabindex="-1" onclick="handleModalBackdrop(event, 'recipe-modal')" class="popup-overlay fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-        <div class="popup-panel bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 transform transition-all relative" tabindex="-1">
+    <div id="recipe-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-recipe-title"
+        tabindex="-1" onclick="handleModalBackdrop(event, 'recipe-modal')"
+        class="popup-overlay fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div class="popup-panel bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 transform transition-all relative"
+            tabindex="-1">
 
             <!-- Close Button -->
-            <button aria-label="Tutup detail resep" onclick="closeModal('recipe-modal')" class="absolute top-4 right-4 z-10 w-9 h-9 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-all">
+            <button aria-label="Tutup detail resep" onclick="closeModal('recipe-modal')"
+                class="absolute top-4 right-4 z-10 w-9 h-9 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-all">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <!-- Modal Content Header -->
             <div class="relative h-64 sm:h-72 w-full">
-                <div id="modal-recipe-visual" class="relative flex h-64 w-full items-center justify-center bg-gizi-50 sm:h-72">
-                    <i id="modal-recipe-icon" class="fa-solid fa-utensils text-6xl text-gizi-600" aria-hidden="true"></i>
+                <div id="modal-recipe-visual"
+                    class="relative flex h-64 w-full items-center justify-center bg-gizi-50 sm:h-72">
+                    <i id="modal-recipe-icon" class="fa-solid fa-utensils text-6xl text-gizi-600"
+                        aria-hidden="true"></i>
                 </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
 
                 <!-- Recipe cost estimate -->
                 <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
                     <div>
-                        <span id="modal-recipe-cat" class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-gizi-500 text-white shadow-md"></span>
+                        <span id="modal-recipe-cat"
+                            class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-gizi-500 text-white shadow-md"></span>
                         <h2 id="modal-recipe-title" class="text-2xl font-black text-white mt-1"></h2>
                     </div>
                     <div class="text-right">
@@ -309,9 +393,11 @@
                 <!-- Unified Ingredients List -->
                 <div>
                     <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider mb-3 flex items-center">
-                        <i class="fa-solid fa-basket-shopping text-gizi-600 mr-2"></i>Bahan-bahan (Satuan Baku: gram, ml, porsi)
+                        <i class="fa-solid fa-basket-shopping text-gizi-600 mr-2"></i>Bahan-bahan (Satuan Baku: gram,
+                        ml, porsi)
                     </h3>
-                    <ul id="modal-recipe-ingredients" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-700">
+                    <ul id="modal-recipe-ingredients"
+                        class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-700">
                         <!-- Ingredients list -->
                     </ul>
                 </div>
@@ -328,11 +414,13 @@
 
                 <!-- Footer Action Buttons -->
                 <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <button id="modal-fav-btn" onclick="" class="px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold flex items-center space-x-2 text-slate-700 hover:bg-slate-50">
+                    <button id="modal-fav-btn" onclick=""
+                        class="px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold flex items-center space-x-2 text-slate-700 hover:bg-slate-50">
                         <i class="fa-regular fa-heart text-red-500"></i>
                         <span id="modal-fav-text">Simpan Favorit</span>
                     </button>
-                    <button onclick="closeModal('recipe-modal')" class="px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800">
+                    <button onclick="closeModal('recipe-modal')"
+                        class="px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800">
                         Tutup
                     </button>
                 </div>
@@ -343,15 +431,21 @@
     </div>
 
     <!-- CATEGORY SAFE FOOD MODAL POPUP -->
-    <div id="category-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-cat-title" tabindex="-1" onclick="handleModalBackdrop(event, 'category-modal')" class="popup-overlay fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="popup-panel bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative" tabindex="-1">
+    <div id="category-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-cat-title"
+        tabindex="-1" onclick="handleModalBackdrop(event, 'category-modal')"
+        class="popup-overlay fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="popup-panel bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative"
+            tabindex="-1">
 
-            <button aria-label="Tutup pilihan kategori" onclick="closeModal('category-modal')" class="absolute top-4 right-4 w-8 h-8 bg-slate-100 text-slate-500 hover:text-slate-800 rounded-full flex items-center justify-center">
+            <button aria-label="Tutup pilihan kategori" onclick="closeModal('category-modal')"
+                class="absolute top-4 right-4 w-8 h-8 bg-slate-100 text-slate-500 hover:text-slate-800 rounded-full flex items-center justify-center">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="flex items-center space-x-3 mb-4">
-                <div id="modal-cat-icon" class="w-12 h-12 rounded-2xl bg-gizi-100 text-gizi-700 flex items-center justify-center text-xl font-bold"></div>
+                <div id="modal-cat-icon"
+                    class="w-12 h-12 rounded-2xl bg-gizi-100 text-gizi-700 flex items-center justify-center text-xl font-bold">
+                </div>
                 <div>
                     <h3 id="modal-cat-title" class="text-xl font-black text-slate-900 capitalize"></h3>
                     <span class="text-xs text-emerald-600 font-semibold">Contoh pilihan bahan pangan</span>
@@ -362,14 +456,16 @@
 
             <!-- Bullet / Bulet-bulet Food List -->
             <div class="mb-6">
-                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3">Contoh bahan pangan yang dapat dipilih:</h4>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3">Contoh bahan pangan yang
+                    dapat dipilih:</h4>
                 <div id="modal-cat-bullets" class="space-y-2">
                     <!-- Dynamic bullet pills -->
                 </div>
             </div>
 
             <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                <button onclick="closeModal('category-modal'); viewCategoryRecipes();" class="px-5 py-2.5 bg-gizi-600 text-white font-bold text-xs rounded-xl hover:bg-gizi-700">
+                <button onclick="closeModal('category-modal'); viewCategoryRecipes();"
+                    class="px-5 py-2.5 bg-gizi-600 text-white font-bold text-xs rounded-xl hover:bg-gizi-700">
                     Lihat Resep Kategori Ini
                 </button>
             </div>
@@ -377,7 +473,7 @@
     </div>
 
     <!-- FOOTER -->
-<footer class="bg-slate-900 text-slate-300 pt-12 pb-8 border-t border-slate-800">
+    <footer class="bg-slate-900 text-slate-300 pt-12 pb-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-slate-800">
 
@@ -389,31 +485,41 @@
                         <span class="text-xl font-extrabold text-white">Dapur Gizi Banjarnegara</span>
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
-                        Situs edukasi dengan contoh menu dan kalkulator pertumbuhan berbasis tabel WHO. Hasil skrining perlu dikonfirmasi oleh tenaga kesehatan.
+                        Situs edukasi dengan contoh menu dan kalkulator pertumbuhan berbasis tabel WHO. Hasil skrining
+                        perlu dikonfirmasi oleh tenaga kesehatan.
                     </p>
                 </div>
 
                 <div class="md:col-span-3 space-y-3">
                     <h4 class="text-sm font-bold text-white uppercase tracking-wider">Kategori Gizi</h4>
                     <ul class="space-y-2 text-xs text-slate-400">
-                        <li><a href="javascript:void(0)" onclick="openCategoryModal('bayi MPASI')" class="hover:text-gizi-400">Bayi MPASI</a></li>
-                        <li><a href="javascript:void(0)" onclick="openCategoryModal('ibu hamil')" class="hover:text-gizi-400">Ibu Hamil</a></li>
-                        <li><a href="javascript:void(0)" onclick="openCategoryModal('menyusui')" class="hover:text-gizi-400">Ibu Menyusui</a></li>
-                        <li><a href="javascript:void(0)" onclick="openCategoryModal('dewasa')" class="hover:text-gizi-400">Dewasa Sehat</a></li>
-                        <li><a href="javascript:void(0)" onclick="openCategoryModal('keluarga')" class="hover:text-gizi-400">Menu Keluarga</a></li>
+                        <li><a href="javascript:void(0)" onclick="openCategoryModal('bayi MPASI')"
+                                class="hover:text-gizi-400">Bayi MPASI</a></li>
+                        <li><a href="javascript:void(0)" onclick="openCategoryModal('ibu hamil')"
+                                class="hover:text-gizi-400">Ibu Hamil</a></li>
+                        <li><a href="javascript:void(0)" onclick="openCategoryModal('menyusui')"
+                                class="hover:text-gizi-400">Ibu Menyusui</a></li>
+                        <li><a href="javascript:void(0)" onclick="openCategoryModal('dewasa')"
+                                class="hover:text-gizi-400">Dewasa Sehat</a></li>
+                        <li><a href="javascript:void(0)" onclick="openCategoryModal('keluarga')"
+                                class="hover:text-gizi-400">Menu Keluarga</a></li>
                     </ul>
                 </div>
 
                 <div class="md:col-span-4 space-y-3">
-                    <h4 class="text-sm font-bold text-white uppercase tracking-wider">20 Kecamatan Kabupaten Banjarnegara</h4>
-                    <p class="pt-1 text-xs leading-relaxed text-slate-400">Banjarnegara, Banjarmangu, Batur, Bawang, Kalibening, Karangkobar, Madukara, Mandiraja, Pagedongan, Pagentan, Pandanarum, Pejawaran, Punggelan, Purwanegara, Purwareja Klampok, Rakit, Sigaluh, Susukan, Wanadadi, dan Wanayasa.</p>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider">20 Kecamatan Kabupaten
+                        Banjarnegara</h4>
+                    <p class="pt-1 text-xs leading-relaxed text-slate-400">Banjarnegara, Banjarmangu, Batur, Bawang,
+                        Kalibening, Karangkobar, Madukara, Mandiraja, Pagedongan, Pagentan, Pandanarum, Pejawaran,
+                        Punggelan, Purwanegara, Purwareja Klampok, Rakit, Sigaluh, Susukan, Wanadadi, dan Wanayasa.</p>
                 </div>
 
             </div>
 
             <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
                 <p>&copy; 2026 Dapur Gizi SMK. All rights reserved.</p>
-                <p class="mt-2 sm:mt-0">Didesain dengan <i class="fa-solid fa-heart text-red-500"></i> untuk edukasi gizi keluarga Banjarnegara</p>
+                <p class="mt-2 sm:mt-0">Didesain dengan <i class="fa-solid fa-heart text-red-500"></i> untuk edukasi
+                    gizi keluarga Banjarnegara</p>
             </div>
         </div>
     </footer>
@@ -421,4 +527,5 @@
     <script src="./js/weight-reference.js"></script>
     <script src="./js/app.js"></script>
 </body>
+
 </html>
