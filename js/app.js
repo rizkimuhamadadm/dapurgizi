@@ -543,7 +543,7 @@ const BANJARNEGARA_DISTRICTS = [
 
 // Fill with the school's official HTTPS URLs when available.
 const schoolLinks = {
-    website: "",
+    website: "https://www.smkn1wanayasa.sch.id/",
     instagram: "",
     tiktok: ""
 };
