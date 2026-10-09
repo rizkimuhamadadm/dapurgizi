@@ -118,18 +118,18 @@
                 <div class="max-w-3xl mx-auto text-center mb-10 space-y-3">
                     <span
                         class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">
-                        <i class="fa-solid fa-notes-medical mr-1.5"></i>Estimasi Pertumbuhan Balita
+                        <i class="fa-solid fa-notes-medical mr-1.5"></i>Cek Pertumbuhan Balita
                     </span>
-                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900">Kalkulator Deteksi Dini Stunting Balita
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900">Yuk, pantau tumbuh kembang si Kecil
                     </h1>
                     <p class="text-slate-600 text-sm sm:text-base">
-                        Masukkan usia dalam bulan penuh, jenis kelamin, panjang/tinggi, dan berat anak untuk melihat
-                        indikator TB/U dan BB/U berbasis standar WHO.
+                        Masukkan usia, jenis kelamin, panjang atau tinggi badan, dan berat si Kecil. Hasilnya membantu
+                        melihat gambaran TB/U dan BB/U berdasarkan standar WHO.
                     </p>
                     <p
                         class="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-left text-xs leading-relaxed text-amber-900">
-                        Hasil ini hanya perkiraan awal dan bukan diagnosis medis. Untuk penilaian pertumbuhan yang
-                        akurat, konsultasikan dengan tenaga kesehatan atau Posyandu.
+                        Ini skrining awal, bukan diagnosis. Kalau hasilnya di luar rentang atau Bunda punya
+                        kekhawatiran, bawa catatan ukur ke Posyandu atau Puskesmas untuk dibahas bersama tenaga kesehatan.
                     </p>
                 </div>
 
@@ -139,7 +139,7 @@
                     <div
                         class="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-md space-y-6">
                         <h3 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center">
-                            <i class="fa-solid fa-clipboard-user text-amber-500 mr-2.5"></i>Data Balita
+                            <i class="fa-solid fa-clipboard-user text-amber-500 mr-2.5"></i>Data si Kecil
                         </h3>
 
                         <form id="stunting-form" oninput="clearScreeningResult()" onchange="clearScreeningResult()"
@@ -171,7 +171,7 @@
                             <!-- Usia (Bulan) -->
                             <div>
                                 <div class="flex justify-between items-center mb-1.5">
-                                    <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">Usia Balita
+                                    <label for="stunting-age" class="text-xs font-bold text-slate-700 uppercase tracking-wider">Usia si Kecil
                                         (Bulan Penuh)</label>
                                     <span id="age-display-val"
                                         class="text-xs font-extrabold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-lg border border-amber-200">12
@@ -181,9 +181,9 @@
                                     oninput="updateAgeLabels(this.value)"
                                     class="w-full h-2 bg-slate-200 rounded-lg accent-amber-500 cursor-pointer">
                                 <div class="flex justify-between text-[10px] text-slate-400 font-semibold mt-1">
-                                    <span>0 Bln (Baru Lahir)</span>
-                                    <span>24 Bln (2 Thn)</span>
-                                    <span>60 Bln (5 Thn)</span>
+                                    <span>0 bulan</span>
+                                    <span>24 bulan</span>
+                                    <span>60 bulan</span>
                                 </div>
                             </div>
 
@@ -198,7 +198,7 @@
                                         class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none pr-12">
                                     <span class="absolute right-4 top-3 text-xs font-bold text-slate-400">cm</span>
                                 </div>
-                                <p id="measurement-hint" class="mt-1.5 text-xs text-slate-500">Usia di bawah 24 bulan:
+                                <p id="measurement-hint" class="mt-1.5 text-xs text-slate-500">Di bawah 24 bulan,
                                     ukur panjang badan sambil berbaring.</p>
                             </div>
                             <div>
@@ -211,13 +211,13 @@
                                         class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none pr-12">
                                     <span class="absolute right-4 top-3 text-xs font-bold text-slate-400">kg</span>
                                 </div>
-                                <p class="mt-1.5 text-xs text-slate-500">Gunakan timbangan yang terkalibrasi dan timbang
-                                    tanpa alas kaki/barang bawaan.</p>
+                                <p class="mt-1.5 text-xs text-slate-500">Gunakan timbangan yang terkalibrasi. Lepas alas
+                                    kaki dan barang bawaan saat menimbang.</p>
                             </div>
 
                             <button type="submit"
                                 class="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-black shadow-md shadow-amber-500/20 transition-all text-sm">
-                                <i class="fa-solid fa-magnifying-glass-chart mr-2"></i>Analisis Status Gizi Anak
+                                <i class="fa-solid fa-magnifying-glass-chart mr-2"></i>Lihat Hasil Skrining
                             </button>
                         </form>
                     </div>
@@ -235,10 +235,10 @@
                                     class="w-16 h-16 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-4 text-2xl">
                                     <i class="fa-solid fa-child"></i>
                                 </div>
-                                <h4 class="font-extrabold text-slate-800 text-base">Hasil Skrining Akan Muncul Di Sini
+                                <h4 class="font-extrabold text-slate-800 text-base">Hasilnya muncul di sini
                                 </h4>
-                                <p class="text-xs text-slate-400 max-w-xs mx-auto mt-1">Isi formulir di sebelah kiri
-                                    untuk melihat z-score tinggi/panjang menurut umur dan berat menurut umur.</p>
+                                <p class="text-xs text-slate-400 max-w-xs mx-auto mt-1">Lengkapi data si Kecil, lalu
+                                    tekan “Lihat Hasil Skrining” untuk melihat hasil TB/U dan BB/U.</p>
                             </div>
 
                             <!-- Calculated Output Container (Hidden initially) -->

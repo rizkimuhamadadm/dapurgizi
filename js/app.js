@@ -846,7 +846,7 @@ function renderStuntingRecommendations(heightZScore, ageMonths, weightZScore) {
                     </div>
                     <div class="grid grid-cols-1 gap-4">${recommendations.map(createRecipeCardHTML).join('')}</div>
                     <a href="./resep.html?category=${encodeURIComponent(ageMonths < 24 ? 'bayi MPASI' : 'keluarga')}" class="inline-flex items-center gap-2 text-sm font-bold text-gizi-700 hover:text-gizi-800">
-                        Lihat menu lainnya <i class="fa-solid fa-arrow-right text-xs"></i>
+                        Lihat resep lainnya <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                 </div>
             `;
