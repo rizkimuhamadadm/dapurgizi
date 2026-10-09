@@ -66,6 +66,12 @@ body {
     color: #15803d;
 }
 
+.nav-btn[aria-current="page"]:hover,
+.mobile-nav-link[aria-current="page"]:hover {
+    background-color: #f0fdf4;
+    color: #15803d;
+}
+
 .district-dot-grid {
     display: grid;
     grid-template-columns: repeat(10, minmax(0, 1fr));

@@ -514,19 +514,19 @@ const AppData = {
         // Set image to a file path such as "./img/adam-maulana.jpg" when the photo is available.
         // Add each public Instagram profile as a full HTTPS URL.
         {
-            name: "Adam Maulana",
+            name: "Rizki Muhamad Adam",
             role: "Anggota tim",
             image: "",
-            instagram: ""
+            instagram: "https://www.instagram.com/rizkimuhamadadam?vrfl=ZmVrMmV6ZWt1aXRz"
         },
         {
             name: "Nanda Aditama",
             role: "Anggota tim",
             image: "",
-            instagram: ""
+            instagram: "https://www.instagram.com/nndaadtm?xtok=YjY1OXlqODdiN2E0"
         },
         {
-            name: "Harine",
+            name: "Harine  Aurelia Putri",
             role: "Ketua Kelompok",
             image: "",
             instagram: ""
@@ -543,9 +543,9 @@ const BANJARNEGARA_DISTRICTS = [
 
 // Fill with the school's official HTTPS URLs when available.
 const schoolLinks = {
-    website: "https://www.smkn1wanayasa.sch.id/",
-    instagram: "",
-    tiktok: ""
+    website: "https://smkn1wanayasa.sch.id",
+    instagram: "https://www.instagram.com/smkn1wanayasa_official?cplk=bWpydHc1d3M2bWhy",
+    tiktok: "https://www.tiktok.com/@smkn1wanayasa_official?_r=1&_t=ZS-9AP5X3TaqHN"
 };
 
 const FAVORITES_STORAGE_KEY = 'dapurGizi_favs';
