@@ -549,6 +549,8 @@ const schoolLinks = {
 };
 
 const FAVORITES_STORAGE_KEY = 'dapurGizi_favs';
+const FAVORITES_EXPIRY_KEY = `${FAVORITES_STORAGE_KEY}_expires`;
+const FAVORITES_TTL_SECONDS = 60 * 60 * 24 * 7;
 
 function parseStoredFavorites(value) {
     const parsed = JSON.parse(value);
@@ -558,44 +560,142 @@ function parseStoredFavorites(value) {
     ))];
 }
 
-const getStoredFavorites = () => {
+function getCookieValue(name) {
     try {
-        const saved = sessionStorage.getItem(FAVORITES_STORAGE_KEY);
-        if (saved !== null) return parseStoredFavorites(saved);
+        const cookie = document.cookie
+            .split(';')
+            .map(part => part.trim())
+            .find(part => part.startsWith(`${encodeURIComponent(name)}=`));
+        return cookie ? decodeURIComponent(cookie.slice(cookie.indexOf('=') + 1)) : null;
+    } catch (error) {
+        console.error('Unable to read favorites cookie:', error);
+        return null;
+    }
+}
+
+function setFavoritesCookie(serialized) {
+    try {
+        const expires = new Date(Date.now() + FAVORITES_TTL_SECONDS * 1000).toUTCString();
+        const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = `${encodeURIComponent(FAVORITES_STORAGE_KEY)}=${encodeURIComponent(serialized)}; Max-Age=${FAVORITES_TTL_SECONDS}; Expires=${expires}; Path=/; SameSite=Lax${secure}`;
+        return getCookieValue(FAVORITES_STORAGE_KEY) === serialized;
+    } catch (error) {
+        console.error('Unable to save favorites cookie:', error);
+        return false;
+    }
+}
+
+function clearFavoritesCookie() {
+    try {
+        document.cookie = `${encodeURIComponent(FAVORITES_STORAGE_KEY)}=; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Path=/; SameSite=Lax`;
+    } catch (error) {
+        console.error('Unable to clear expired favorites cookie:', error);
+    }
+}
+
+function readFavoritesFromStorage(storage, allowLegacy = false) {
+    const serialized = storage.getItem(FAVORITES_STORAGE_KEY);
+    if (serialized === null) return null;
+    const storedExpiry = storage.getItem(FAVORITES_EXPIRY_KEY);
+    if (storedExpiry === null && !allowLegacy) {
+        storage.removeItem(FAVORITES_STORAGE_KEY);
+        return null;
+    }
+    if (storedExpiry === null && allowLegacy) {
+        storage.setItem(FAVORITES_EXPIRY_KEY, String(Date.now() + FAVORITES_TTL_SECONDS * 1000));
+    } else {
+        const expiresAt = Number(storedExpiry);
+        if (!Number.isFinite(expiresAt) || expiresAt <= Date.now()) {
+            storage.removeItem(FAVORITES_STORAGE_KEY);
+            storage.removeItem(FAVORITES_EXPIRY_KEY);
+            return null;
+        }
+    }
+    try {
+        return parseStoredFavorites(serialized);
+    } catch (error) {
+        storage.removeItem(FAVORITES_STORAGE_KEY);
+        storage.removeItem(FAVORITES_EXPIRY_KEY);
+        throw error;
+    }
+}
+
+function getStoredFavorites() {
+    const fromCookie = getCookieValue(FAVORITES_STORAGE_KEY);
+    if (fromCookie !== null) {
+        try {
+            const favorites = parseStoredFavorites(fromCookie);
+            let expiresAt;
+            try {
+                const storedExpiry = localStorage.getItem(FAVORITES_EXPIRY_KEY);
+                expiresAt = storedExpiry === null ? null : Number(storedExpiry);
+                if (expiresAt !== null && (!Number.isFinite(expiresAt) || expiresAt <= Date.now())) {
+                    clearFavoritesCookie();
+                    localStorage.removeItem(FAVORITES_STORAGE_KEY);
+                    localStorage.removeItem(FAVORITES_EXPIRY_KEY);
+                    return [];
+                }
+                if (expiresAt === null) {
+                    expiresAt = Date.now() + FAVORITES_TTL_SECONDS * 1000;
+                }
+                localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
+                localStorage.setItem(FAVORITES_EXPIRY_KEY, String(expiresAt));
+            } catch (error) {
+                console.warn('Could not mirror favorites cookie to local storage:', error);
+            }
+            return favorites;
+        } catch (error) {
+            console.error('Unable to parse favorites cookie:', error);
+            clearFavoritesCookie();
+        }
+    }
+
+    try {
+        const favorites = readFavoritesFromStorage(localStorage, true);
+        if (favorites !== null) {
+            setFavoritesCookie(JSON.stringify(favorites));
+            return favorites;
+        }
+    } catch (error) {
+        console.error('Unable to read saved favorites from local storage:', error);
+    }
+
+    try {
+        const favorites = readFavoritesFromStorage(sessionStorage, true);
+        if (favorites !== null) {
+            setFavoritesCookie(JSON.stringify(favorites));
+            return favorites;
+        }
     } catch (error) {
         console.error('Unable to read temporary favorites from session storage:', error);
     }
-
-    try {
-        const saved = localStorage.getItem(FAVORITES_STORAGE_KEY);
-        return saved === null ? [] : parseStoredFavorites(saved);
-    } catch (error) {
-        console.error('Unable to read saved favorites from local storage:', error);
-        return [];
-    }
-};
+    return [];
+}
 
 function storeFavorites(favorites) {
     const serialized = JSON.stringify(favorites);
+    const cookieStored = setFavoritesCookie(serialized);
+    const expiry = String(Date.now() + FAVORITES_TTL_SECONDS * 1000);
+    let localStored = false;
     try {
         localStorage.setItem(FAVORITES_STORAGE_KEY, serialized);
+        localStorage.setItem(FAVORITES_EXPIRY_KEY, expiry);
+        localStored = true;
         try {
             sessionStorage.removeItem(FAVORITES_STORAGE_KEY);
+            sessionStorage.removeItem(FAVORITES_EXPIRY_KEY);
         } catch (error) {
             console.warn('Could not clear the temporary favorites copy:', error);
-            try {
-                sessionStorage.setItem(FAVORITES_STORAGE_KEY, serialized);
-            } catch (syncError) {
-                console.error('Could not synchronize the temporary favorites copy:', syncError);
-            }
         }
-        return 'local';
     } catch (error) {
         console.error('Unable to save favorites to local storage:', error);
     }
 
+    if (cookieStored || localStored) return 'persistent';
+
     try {
         sessionStorage.setItem(FAVORITES_STORAGE_KEY, serialized);
+        sessionStorage.setItem(FAVORITES_EXPIRY_KEY, expiry);
         return 'session';
     } catch (error) {
         console.error('Unable to save favorites to session storage:', error);
@@ -1197,7 +1297,9 @@ function toggleFavorite(id) {
     } else if (storageResult === 'failed') {
         showFavoriteFeedback('Favorit belum dapat disimpan oleh browser ini.', 'error');
     } else {
-        showFavoriteFeedback(wasFavorite ? 'Resep dihapus dari favorit.' : 'Resep tersimpan di favorit.');
+        showFavoriteFeedback(wasFavorite
+            ? 'Resep dihapus dari favorit.'
+            : 'Resep tersimpan di favorit hingga 1 minggu.');
     }
 }
 
@@ -1216,23 +1318,16 @@ function updateFavoriteButtons(id) {
 function handleFavoritesStorageChange(event) {
     if (event.key !== FAVORITES_STORAGE_KEY && event.key !== null) return;
     try {
-        currentState.favorites = event.newValue
-            ? parseStoredFavorites(event.newValue)
-            : event.key === FAVORITES_STORAGE_KEY
-                ? []
-                : getStoredFavorites();
+        if (event.newValue) {
+            currentState.favorites = parseStoredFavorites(event.newValue);
+            setFavoritesCookie(JSON.stringify(currentState.favorites));
+        } else {
+            currentState.favorites = [];
+            clearFavoritesCookie();
+        }
     } catch (error) {
         console.error('Unable to synchronize saved favorites:', error);
         currentState.favorites = getStoredFavorites();
-    }
-    try {
-        if (currentState.favorites.length) {
-            sessionStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(currentState.favorites));
-        } else {
-            sessionStorage.removeItem(FAVORITES_STORAGE_KEY);
-        }
-    } catch (error) {
-        console.error('Unable to synchronize temporary favorites:', error);
     }
     updateFavCounters();
     renderDashboardRecipes();
