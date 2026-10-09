@@ -42,7 +42,7 @@
                 <nav aria-label="Navigasi utama" class="desktop-nav items-center space-x-1">
                     <a href="./index.html" id="nav-home"
                         data-page="home"
-                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-gizi-700 bg-gizi-50">
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-house mr-2"></i>Beranda
                     </a>
                     <a href="./cek-stunting.html" id="nav-stunting"
@@ -112,37 +112,70 @@
     </header>
     <main class="flex-grow">
         <section id="page-admin" class="page-section">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
 
-                <!-- Header -->
-                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                    <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-gizi-100 text-gizi-800">Profil
-                        Kelompok</span>
-                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900">Tim Dapur Gizi</h1>
-                    <p class="text-slate-600 text-sm sm:text-base">Dapur Gizi dikerjakan bersama oleh tiga anggota
-                        kelompok.</p>
-                </div>
+                <header class="relative mb-10 overflow-hidden rounded-3xl bg-gradient-to-br from-gizi-800 via-gizi-700 to-emerald-800 px-5 py-8 text-white shadow-xl sm:mb-12 sm:px-10 sm:py-12">
+                    <div class="pointer-events-none absolute -right-12 -top-16 h-56 w-56 rounded-full bg-white/10 blur-2xl"></div>
+                    <div class="relative mx-auto max-w-3xl text-center">
+                        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs font-bold text-emerald-50">
+                            <i class="fa-solid fa-people-group" aria-hidden="true"></i>Profil Kelompok
+                        </span>
+                        <h1 class="mt-4 text-2xl font-black tracking-tight sm:text-4xl">Kenalan dengan Tim Dapur Gizi</h1>
+                        <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-emerald-50 sm:text-base">
+                            Kami bertiga mengerjakan Dapur Gizi sebagai media informasi menu keluarga dan pemantauan tumbuh kembang anak untuk warga Banjarnegara.
+                        </p>
+                        <div class="mt-6 flex flex-wrap justify-center gap-2 text-xs font-semibold text-white/90">
+                            <span class="rounded-full border border-white/15 bg-white/10 px-3 py-1.5"><i class="fa-solid fa-users mr-1.5" aria-hidden="true"></i>3 anggota</span>
+                            <span class="rounded-full border border-white/15 bg-white/10 px-3 py-1.5"><i class="fa-solid fa-location-dot mr-1.5" aria-hidden="true"></i>Banjarnegara</span>
+                            <span class="rounded-full border border-white/15 bg-white/10 px-3 py-1.5"><i class="fa-solid fa-heart-pulse mr-1.5" aria-hidden="true"></i>Edukasi gizi keluarga</span>
+                        </div>
+                    </div>
+                </header>
 
                 <!-- Team Section -->
-                <div class="mb-16">
-                    <h2 class="text-xl font-extrabold text-slate-900 mb-6 flex items-center justify-center">
-                        <i class="fa-solid fa-users text-gizi-600 mr-2.5"></i>Anggota Kelompok Dapur Gizi
-                    </h2>
+                <section aria-labelledby="team-section-title" class="mb-10 sm:mb-12">
+                    <div class="mb-5 flex flex-col gap-1.5 text-center sm:mb-7 sm:text-left">
+                        <p class="text-xs font-extrabold uppercase tracking-[0.16em] text-gizi-600">Di balik Dapur Gizi</p>
+                        <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                            <h2 id="team-section-title" class="text-2xl font-black text-slate-900 sm:text-3xl">Anggota kelompok</h2>
+                            <p class="text-sm text-slate-600">Tiga orang, satu proyek bersama.</p>
+                        </div>
+                    </div>
 
-                    <div class="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                    <div class="team-member-grid mx-auto grid max-w-5xl grid-cols-1 gap-3"
                         id="team-members-grid">
                         <!-- Dynamic team list -->
                     </div>
+                </section>
 
-                    <div class="mx-auto mt-10 max-w-3xl rounded-2xl border border-slate-200/80 bg-slate-50 p-5 text-center sm:p-7">
-                        <h3 class="text-lg font-extrabold text-slate-900">Terhubung dengan Kami</h3>
-                        <p class="mt-1 text-sm text-slate-600">Tautan contoh dapat disesuaikan pada konfigurasi kontak di <code>js/app.js</code>.</p>
-                        <nav id="team-contact-links" aria-label="Kontak kelompok dan website sekolah"
-                            class="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
-                            <!-- Contact links are populated from js/app.js -->
-                        </nav>
+                <section aria-labelledby="school-social-title" class="mx-auto mb-10 max-w-5xl overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm sm:mb-12">
+                    <div class="p-5 sm:p-7">
+                        <div>
+                            <p class="text-xs font-extrabold uppercase tracking-[0.16em] text-gizi-600">Info sekolah</p>
+                            <h2 id="school-social-title" class="mt-1.5 text-xl font-black text-slate-900 sm:text-2xl">Kanal resmi SMK</h2>
+                            <p class="mt-1.5 max-w-2xl text-sm leading-relaxed text-slate-600">
+                                Website dan media sosial sekolah ada di sini agar mudah ditemukan tanpa bercampur dengan akun pribadi anggota.
+                            </p>
+                        </div>
+                        <div id="school-social-links" class="school-link-grid mt-5 grid grid-cols-1 gap-2 sm:gap-3" aria-live="polite">
+                            <!-- Official school links are populated from js/app.js -->
+                        </div>
                     </div>
-                </div>
+                </section>
+
+                <aside class="mx-auto max-w-5xl rounded-2xl border border-gizi-100 bg-gizi-50 p-4 sm:p-6">
+                    <div class="flex items-start gap-4">
+                        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-gizi-700 shadow-sm">
+                            <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+                        </span>
+                        <div>
+                            <h2 class="font-extrabold text-gizi-950">Tentang proyek ini</h2>
+                            <p class="mt-1 text-sm leading-relaxed text-gizi-900">
+                                Dapur Gizi menggabungkan contoh resep dengan informasi pertumbuhan anak. Kalkulator di situs ini hanya alat bantu skrining; hasil pengukuran tetap perlu dibahas bersama tenaga kesehatan.
+                            </p>
+                        </div>
+                    </div>
+                </aside>
 
             </div>
         </section>

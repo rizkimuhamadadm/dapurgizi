@@ -42,7 +42,7 @@
                 <nav aria-label="Navigasi utama" class="desktop-nav items-center space-x-1">
                     <a href="./index.html" id="nav-home"
                         data-page="home"
-                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-gizi-700 bg-gizi-50">
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-house mr-2"></i>Beranda
                     </a>
                     <a href="./cek-stunting.html" id="nav-stunting"
@@ -147,33 +147,90 @@
                             </div>
                         </div>
 
-                        <!-- Hero Stats Cards -->
-                        <div class="lg:col-span-5 grid grid-cols-2 gap-4">
-                            <div
-                                class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 text-center">
-                                <div class="text-3xl font-extrabold text-gizi-400 mb-1" id="stat-recipe-count">18</div>
-                                <div class="text-xs text-slate-300 font-medium uppercase tracking-wider">Contoh Menu
-                                </div>
+                        <!-- Informational infographic (not interactive) -->
+                        <section aria-label="Ringkasan informasi Dapur Gizi"
+                            class="home-infographic lg:col-span-5 rounded-3xl border border-white/15 bg-white/10 p-4 sm:p-5 backdrop-blur-md">
+                            <div class="mb-4 flex items-center justify-between gap-3">
+                                <h2 class="text-sm font-extrabold text-white sm:text-base">Sekilas Dapur Gizi</h2>
+                                <span class="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-200">
+                                    Info
+                                </span>
                             </div>
-                            <div
-                                class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 text-center">
-                                <div class="text-3xl font-extrabold text-amber-400 mb-1">WHO</div>
-                                <div class="text-xs text-slate-300 font-medium uppercase tracking-wider">Standar
-                                    Pertumbuhan</div>
+                            <div class="home-infographic-grid">
+                                <article aria-label="Contoh menu resep"
+                                    class="infographic-card rounded-2xl border border-white/10 bg-slate-950/25 p-4">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div>
+                                            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-300">Contoh menu</p>
+                                            <p class="mt-1 text-2xl font-black text-gizi-300">
+                                                <span id="stat-recipe-count">18</span>
+                                                <span class="text-xs font-bold text-slate-300">resep</span>
+                                            </p>
+                                        </div>
+                                        <i class="fa-solid fa-bowl-food text-xl text-gizi-300" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="recipe-chart mt-3 flex h-5 items-end gap-1" aria-hidden="true">
+                                        <span class="h-2 w-2 rounded-t bg-gizi-300/60"></span>
+                                        <span class="h-3 w-2 rounded-t bg-gizi-300/70"></span>
+                                        <span class="h-4 w-2 rounded-t bg-gizi-300/80"></span>
+                                        <span class="h-5 w-2 rounded-t bg-gizi-300"></span>
+                                        <span class="ml-1 self-center text-[10px] text-slate-300">Inspirasi menu keluarga</span>
+                                    </div>
+                                </article>
+
+                                <article aria-label="Standar pertumbuhan WHO"
+                                    class="infographic-card rounded-2xl border border-white/10 bg-slate-950/25 p-4">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div>
+                                            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-300">Standar pertumbuhan</p>
+                                            <p class="mt-1 text-2xl font-black text-amber-300">WHO</p>
+                                        </div>
+                                        <i class="fa-solid fa-chart-line text-xl text-amber-300" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="zscore-chart mt-3" role="img" aria-label="Contoh rentang z-score: sangat pendek di bawah minus 3, pendek dari minus 3 hingga kurang dari minus 2, dan rentang normal dari minus 2 hingga plus 3">
+                                        <div class="flex h-2 overflow-hidden rounded-full">
+                                            <span class="zscore-segment w-1/4 bg-red-400"></span>
+                                            <span class="zscore-segment w-1/5 bg-amber-300"></span>
+                                            <span class="zscore-segment flex-1 bg-emerald-300"></span>
+                                        </div>
+                                        <div class="mt-1 flex justify-between text-[9px] text-slate-300">
+                                            <span>&lt; -3 SD</span><span>-2 SD</span><span>+3 SD</span>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article aria-label="Rentang usia acuan nol sampai enam puluh bulan"
+                                    class="infographic-card rounded-2xl border border-white/10 bg-slate-950/25 p-4">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div>
+                                            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-300">Usia acuan</p>
+                                            <p class="mt-1 text-2xl font-black text-emerald-300">0–60 <span class="text-xs">bulan</span></p>
+                                        </div>
+                                        <i class="fa-solid fa-child-reaching text-xl text-emerald-300" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="age-chart relative mt-4 h-2 rounded-full bg-white/15" role="img" aria-label="Rentang pemantauan usia dari lahir sampai lima tahun, dengan penanda usia dua tahun">
+                                        <span class="age-chart-fill absolute inset-y-0 left-0 w-full rounded-full bg-emerald-300/80"></span>
+                                        <span class="age-chart-marker absolute -top-1 left-2/5 h-4 w-1 rounded-full bg-white"></span>
+                                    </div>
+                                    <div class="mt-1 flex justify-between text-[9px] text-slate-300">
+                                        <span>Lahir</span><span>2 tahun</span><span>5 tahun</span>
+                                    </div>
+                                </article>
+
+                                <article aria-label="Wilayah cakupan dua puluh kecamatan Banjarnegara"
+                                    class="infographic-card rounded-2xl border border-white/10 bg-slate-950/25 p-4">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <div>
+                                            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-300">Cakupan wilayah</p>
+                                            <p class="mt-1 text-2xl font-black text-sky-300">20 <span class="text-xs">kecamatan</span></p>
+                                        </div>
+                                        <i class="fa-solid fa-map-location-dot text-xl text-sky-300" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="district-dot-grid mt-3" role="group" aria-label="Cakupan 20 kecamatan Kabupaten Banjarnegara">
+                                    </div>
+                                </article>
                             </div>
-                            <div
-                                class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 text-center">
-                                <div class="text-3xl font-extrabold text-emerald-300 mb-1">0-60</div>
-                                <div class="text-xs text-slate-300 font-medium uppercase tracking-wider">Bulan Usia
-                                    Acuan</div>
-                            </div>
-                            <div
-                                class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 text-center">
-                                <div class="text-3xl font-extrabold text-sky-400 mb-1">20</div>
-                                <div class="text-xs text-slate-300 font-medium uppercase tracking-wider">Kecamatan
-                                    Kabupaten Banjarnegara</div>
-                            </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
             </div>

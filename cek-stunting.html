@@ -42,7 +42,7 @@
                 <nav aria-label="Navigasi utama" class="desktop-nav items-center space-x-1">
                     <a href="./index.html" id="nav-home"
                         data-page="home"
-                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-gizi-700 bg-gizi-50">
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-house mr-2"></i>Beranda
                     </a>
                     <a href="./cek-stunting.html" id="nav-stunting"
@@ -142,7 +142,7 @@
                             <i class="fa-solid fa-clipboard-user text-amber-500 mr-2.5"></i>Data si Kecil
                         </h3>
 
-                        <form id="stunting-form" oninput="clearScreeningResult()" onchange="clearScreeningResult()"
+                        <form id="stunting-form" novalidate oninput="clearScreeningResult()" onchange="clearScreeningResult()"
                             onsubmit="event.preventDefault(); calculateStunting();" class="space-y-4">
                             <!-- Jenis Kelamin -->
                             <div>
@@ -331,6 +331,32 @@
             </div>
         </section>
     </main>
+    <!-- SCREENING VALIDATION DIALOG -->
+    <div id="screening-validation-modal" role="alertdialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="screening-validation-title" aria-describedby="screening-validation-message" tabindex="-1"
+        onclick="handleModalBackdrop(event, 'screening-validation-modal')"
+        class="popup-overlay fixed inset-0 z-[60] hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="popup-panel relative w-full max-w-md overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-2xl"
+            tabindex="-1">
+            <div class="h-2 bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400"></div>
+            <button type="button" aria-label="Tutup pesan" onclick="closeModal('screening-validation-modal')"
+                class="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+            <div class="p-6 pt-8 sm:p-8">
+                <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-600">
+                    <i class="fa-solid fa-circle-exclamation text-2xl" aria-hidden="true"></i>
+                </div>
+                <p class="mb-1 text-[11px] font-extrabold uppercase tracking-[0.16em] text-amber-600">Cek lagi datanya, yuk</p>
+                <h2 id="screening-validation-title" class="pr-8 text-xl font-black text-slate-900">Data belum sesuai</h2>
+                <p id="screening-validation-message" class="mt-2 text-sm leading-relaxed text-slate-600"></p>
+                <button type="button" onclick="closeModal('screening-validation-modal')"
+                    class="touch-target mt-6 w-full rounded-xl bg-gizi-600 px-5 py-3 text-sm font-extrabold text-white shadow-md shadow-gizi-600/20 hover:bg-gizi-700">
+                    Oke, saya periksa
+                </button>
+            </div>
+        </div>
+    </div>
     <!-- RECIPE DETAIL MODAL POPUP -->
     <div id="recipe-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-recipe-title"
         tabindex="-1" onclick="handleModalBackdrop(event, 'recipe-modal')"

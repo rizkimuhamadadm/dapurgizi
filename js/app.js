@@ -512,49 +512,115 @@ const AppData = {
 
     team: [
         // Set image to a file path such as "./img/adam-maulana.jpg" when the photo is available.
+        // Add each public Instagram profile as a full HTTPS URL.
         {
             name: "Adam Maulana",
-            role: "Anggota Kelompok Dapur Gizi",
-            image: ""
+            role: "Anggota tim",
+            image: "",
+            instagram: ""
         },
         {
             name: "Nanda Ardiansyah",
-            role: "Anggota Kelompok Dapur Gizi",
-            image: ""
+            role: "Anggota tim",
+            image: "",
+            instagram: ""
         },
         {
             name: "Harine",
             role: "Ketua Kelompok",
-            image: ""
+            image: "",
+            instagram: ""
         }
     ]
 };
 
-const teamContactLinks = {
-    instagram: "https://www.instagram.com/username_anda/",
-    whatsapp: "https://wa.me/62XXXXXXXXXX",
-    schoolWebsite: "https://www.smk.sch.id/"
+const BANJARNEGARA_DISTRICTS = [
+    'Banjarnegara', 'Banjarmangu', 'Batur', 'Bawang', 'Kalibening',
+    'Karangkobar', 'Madukara', 'Mandiraja', 'Pagedongan', 'Pagentan',
+    'Pandanarum', 'Pejawaran', 'Punggelan', 'Purwanegara', 'Purwareja Klampok',
+    'Rakit', 'Sigaluh', 'Susukan', 'Wanadadi', 'Wanayasa'
+];
+
+// Fill with the school's official HTTPS URLs when available.
+const schoolLinks = {
+    website: "",
+    instagram: "",
+    tiktok: ""
 };
+
+const FAVORITES_STORAGE_KEY = 'dapurGizi_favs';
+
+function parseStoredFavorites(value) {
+    const parsed = JSON.parse(value);
+    if (!Array.isArray(parsed)) return [];
+    return [...new Set(parsed.filter(id =>
+        typeof id === 'string' && AppData.recipes.some(recipe => recipe.id === id)
+    ))];
+}
 
 const getStoredFavorites = () => {
     try {
-        const saved = localStorage.getItem('dapurGizi_favs');
-        const parsed = saved ? JSON.parse(saved) : [];
-        if (!Array.isArray(parsed)) return [];
-        return [...new Set(parsed.filter(id =>
-            typeof id === 'string' && AppData.recipes.some(recipe => recipe.id === id)
-        ))];
+        const saved = sessionStorage.getItem(FAVORITES_STORAGE_KEY);
+        if (saved !== null) return parseStoredFavorites(saved);
     } catch (error) {
-        console.warn('Unable to parse saved favorites:', error);
+        console.error('Unable to read temporary favorites from session storage:', error);
+    }
+
+    try {
+        const saved = localStorage.getItem(FAVORITES_STORAGE_KEY);
+        return saved === null ? [] : parseStoredFavorites(saved);
+    } catch (error) {
+        console.error('Unable to read saved favorites from local storage:', error);
         return [];
     }
 };
 
+function storeFavorites(favorites) {
+    const serialized = JSON.stringify(favorites);
+    try {
+        localStorage.setItem(FAVORITES_STORAGE_KEY, serialized);
+        try {
+            sessionStorage.removeItem(FAVORITES_STORAGE_KEY);
+        } catch (error) {
+            console.warn('Could not clear the temporary favorites copy:', error);
+            try {
+                sessionStorage.setItem(FAVORITES_STORAGE_KEY, serialized);
+            } catch (syncError) {
+                console.error('Could not synchronize the temporary favorites copy:', syncError);
+            }
+        }
+        return 'local';
+    } catch (error) {
+        console.error('Unable to save favorites to local storage:', error);
+    }
+
+    try {
+        sessionStorage.setItem(FAVORITES_STORAGE_KEY, serialized);
+        return 'session';
+    } catch (error) {
+        console.error('Unable to save favorites to session storage:', error);
+        return 'failed';
+    }
+}
+
+const DEFAULT_MAX_BUDGET = 0;
+const normalizeSearchText = value => String(value ?? '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase('id-ID')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim();
+
 const currentState = {
     activeTab: 'home',
-    selectedCategory: new URLSearchParams(window.location.search).get('category') || 'all',
+    selectedCategory: (() => {
+        const category = new URLSearchParams(window.location.search).get('category');
+        return category === 'all' || AppData.categories.some(item => item.id === category)
+            ? category
+            : 'all';
+    })(),
     categoryModalId: null,
-    maxBudget: 60000,
+    maxBudget: DEFAULT_MAX_BUDGET,
     searchQuery: '',
     favorites: getStoredFavorites(),
     activeModalId: null,
@@ -569,12 +635,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (recipeCount) recipeCount.textContent = AppData.recipes.length;
     renderHomepageCategories();
     renderHomepageFeatured();
+    renderDistrictCoverage();
     renderCategoryFilterButtons();
     renderTeamMembers();
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.value = new URLSearchParams(window.location.search).get('keyword') || '';
-        currentState.searchQuery = searchInput.value.toLowerCase().trim();
+        currentState.searchQuery = normalizeSearchText(searchInput.value);
     }
     renderDashboardRecipes();
     updateBudgetDisplay(currentState.maxBudget);
@@ -583,6 +650,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentState.activeTab === 'favorites') {
         renderFavorites();
     }
+    window.addEventListener('storage', handleFavoritesStorageChange);
     updateActiveNav();
     document.addEventListener('keydown', handleModalKeydown);
     document.addEventListener('keydown', handleMobileNavKeydown);
@@ -630,10 +698,14 @@ function updateActiveNav() {
     const currentTab = getCurrentTab();
     document.querySelectorAll('.nav-btn, .mobile-nav-link').forEach(link => {
         const isCurrent = link.dataset.page === currentTab;
-        link.classList.toggle('text-gizi-700', isCurrent);
-        link.classList.toggle('bg-gizi-50', isCurrent);
-        link.classList.toggle('text-slate-600', !isCurrent);
-        link.setAttribute('aria-current', isCurrent ? 'page' : 'false');
+        link.classList.remove('text-gizi-700', 'bg-gizi-50', 'text-slate-600', 'text-slate-700');
+        if (isCurrent) {
+            link.classList.add('text-gizi-700', 'bg-gizi-50');
+            link.setAttribute('aria-current', 'page');
+        } else {
+            link.classList.add(link.classList.contains('nav-btn') ? 'text-slate-600' : 'text-slate-700');
+            link.removeAttribute('aria-current');
+        }
     });
 }
 
@@ -688,11 +760,32 @@ function calculateLmsZ(value, [lValue, median, coefficientOfVariation]) {
 function clearScreeningResult() {
     document.getElementById('result-output')?.classList.add('hidden');
     document.getElementById('result-placeholder')?.classList.remove('hidden');
+    document.querySelectorAll('#stunting-form [aria-invalid="true"]').forEach(input => {
+        input.removeAttribute('aria-invalid');
+    });
     const recommendations = document.getElementById('stunting-recipe-recommendations');
     if (recommendations) {
         recommendations.classList.add('hidden');
         recommendations.innerHTML = '';
     }
+}
+
+function showScreeningValidation(message, fieldId, title = 'Data belum sesuai') {
+    const modal = document.getElementById('screening-validation-modal');
+    const titleElement = document.getElementById('screening-validation-title');
+    const messageElement = document.getElementById('screening-validation-message');
+    const field = fieldId ? document.getElementById(fieldId) : null;
+
+    if (!modal || !titleElement || !messageElement) {
+        console.error('Screening validation dialog is unavailable.');
+        return;
+    }
+
+    if (field) field.setAttribute('aria-invalid', 'true');
+    titleElement.textContent = title;
+    messageElement.textContent = message;
+    const submitButton = document.querySelector('#stunting-form button[type="submit"]');
+    openModal(modal.id, field || submitButton);
 }
 
 function calculateStunting() {
@@ -703,15 +796,15 @@ function calculateStunting() {
     const gender = genderEl ? genderEl.value : 'male';
 
     if (!Number.isInteger(ageMonths) || ageMonths < 0 || ageMonths > 60) {
-        alert('Pilih usia balita antara 0 sampai 60 bulan.');
+        showScreeningValidation('Pilih usia si Kecil dalam rentang 0 sampai 60 bulan.', 'stunting-age');
         return;
     }
     if (!Number.isFinite(height) || height < 30 || height > 130) {
-        alert('Silakan masukkan angka tinggi badan balita yang valid.');
+        showScreeningValidation('Masukkan panjang atau tinggi badan antara 30 sampai 130 cm. Pastikan cara ukurnya sesuai usia.', 'stunting-height');
         return;
     }
     if (!Number.isFinite(weight) || weight < 0.5 || weight > 35) {
-        alert('Silakan masukkan berat badan antara 0,5 sampai 35 kg.');
+        showScreeningValidation('Masukkan berat badan antara 0,5 sampai 35 kg.', 'stunting-weight');
         return;
     }
 
@@ -719,7 +812,7 @@ function calculateStunting() {
     const heightReference = window.WHO_LHFA?.[whoSex]?.[ageMonths];
     const weightReference = window.WHO_WFA?.[whoSex]?.[ageMonths];
     if (!heightReference || !weightReference) {
-        alert('Data standar pertumbuhan WHO tidak dapat dimuat. Muat ulang halaman dan coba lagi.');
+        showScreeningValidation('Data standar pertumbuhan WHO belum berhasil dimuat. Muat ulang halaman, lalu coba lagi.', null, 'Data WHO belum tersedia');
         console.error(`Missing WHO growth reference for ${gender}, ${ageMonths} months.`);
         return;
     }
@@ -727,11 +820,11 @@ function calculateStunting() {
     const heightZScore = calculateLmsZ(height, heightReference);
     const weightZScore = calculateLmsZ(weight, weightReference);
     if (!Number.isFinite(heightZScore) || heightZScore < -6 || heightZScore > 6) {
-        alert('Hasil panjang/tinggi berada di luar batas pemeriksaan standar WHO (-6 hingga +6 SD). Periksa kembali usia, jenis kelamin, dan cara mengukur.');
+        showScreeningValidation('Hasil panjang atau tinggi berada di luar batas pemeriksaan WHO (-6 sampai +6 SD). Periksa kembali usia, jenis kelamin, dan cara mengukur.', 'stunting-height', 'Hasil ukur perlu diperiksa');
         return;
     }
     if (!Number.isFinite(weightZScore) || weightZScore < -6 || weightZScore > 5) {
-        alert('Hasil berat berada di luar batas pemeriksaan standar WHO (-6 hingga +5 SD). Periksa kembali usia, jenis kelamin, dan cara menimbang.');
+        showScreeningValidation('Hasil berat berada di luar batas pemeriksaan WHO (-6 sampai +5 SD). Periksa kembali usia, jenis kelamin, dan cara menimbang.', 'stunting-weight', 'Hasil timbang perlu diperiksa');
         return;
     }
 
@@ -879,6 +972,16 @@ function renderHomepageFeatured() {
     container.innerHTML = featured.map(rcp => createRecipeCardHTML(rcp)).join('');
 }
 
+function renderDistrictCoverage() {
+    const container = document.querySelector('.district-dot-grid');
+    if (!container) return;
+    container.innerHTML = BANJARNEGARA_DISTRICTS.map(district => `
+        <span class="district-dot" role="img" tabindex="0"
+            aria-label="${escapeHtml(district)}"
+            data-tooltip="${escapeHtml(district)}" title="${escapeHtml(district)}"></span>
+    `).join('');
+}
+
 // FILTER CONTROLS RENDERING
 function renderCategoryFilterButtons() {
     const container = document.getElementById('category-buttons-container');
@@ -922,22 +1025,38 @@ function setCategoryFilter(catId) {
 function handleFilterChange() {
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
-        currentState.searchQuery = searchInput.value.toLowerCase().trim();
+        currentState.searchQuery = normalizeSearchText(searchInput.value);
     }
+    renderDashboardRecipes();
+}
+
+function showAllBudgetRecipes() {
+    const slider = document.getElementById('budget-slider');
+    if (!slider) {
+        console.error('Recipe budget filter is unavailable.');
+        return;
+    }
+    slider.value = slider.max;
+    updateBudgetDisplay(slider.value);
     renderDashboardRecipes();
 }
 
 function resetFilters() {
     currentState.selectedCategory = 'all';
-    currentState.maxBudget = 60000;
+    currentState.maxBudget = DEFAULT_MAX_BUDGET;
     currentState.searchQuery = '';
 
     const slider = document.getElementById('budget-slider');
-    if (slider) slider.value = 60000;
-    updateBudgetDisplay(60000);
+    if (slider) slider.value = DEFAULT_MAX_BUDGET;
+    updateBudgetDisplay(DEFAULT_MAX_BUDGET);
 
     const searchInput = document.getElementById('search-input');
     if (searchInput) searchInput.value = '';
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete('category');
+    url.searchParams.delete('keyword');
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
 
     renderCategoryFilterButtons();
     renderDashboardRecipes();
@@ -999,31 +1118,45 @@ function renderDashboardRecipes() {
     const container = document.getElementById('dashboard-recipe-grid');
     const emptyState = document.getElementById('empty-state');
     const countLabel = document.getElementById('results-count');
+    const emptyMessage = document.getElementById('empty-state-message');
+    const budgetSuggestion = document.getElementById('empty-state-budget-suggestion');
 
     if (!container) return;
 
-    const filtered = AppData.recipes.filter(rcp => {
+    const queryTerms = currentState.searchQuery.split(/\s+/).filter(Boolean);
+    const matchingFilters = AppData.recipes.filter(rcp => {
         const matchCat = currentState.selectedCategory === 'all' ||
             rcp.category === currentState.selectedCategory ||
             rcp.relatedCategories?.includes(currentState.selectedCategory);
-        const matchBudget = rcp.estimatedCost <= currentState.maxBudget;
+        const searchableText = normalizeSearchText([
+            rcp.title,
+            rcp.category,
+            ...(rcp.relatedCategories || []),
+            rcp.ageRangeLabel,
+            rcp.portionUnit,
+            rcp.nutrition,
+            ...(rcp.ingredients || []),
+            ...(rcp.steps || [])
+        ].join(' '));
+        const matchQuery = queryTerms.every(term => searchableText.includes(term));
 
-        const query = currentState.searchQuery;
-        const matchQuery = !query ||
-            rcp.title.toLowerCase().includes(query) ||
-            rcp.category.toLowerCase().includes(query) ||
-            rcp.relatedCategories?.some(category => category.toLowerCase().includes(query)) ||
-            rcp.nutrition.toLowerCase().includes(query) ||
-            rcp.ingredients.some(ing => ing.toLowerCase().includes(query));
-
-        return matchCat && matchBudget && matchQuery;
+        return matchCat && matchQuery;
     });
+    const filtered = matchingFilters.filter(rcp => rcp.estimatedCost <= currentState.maxBudget);
 
     if (countLabel) countLabel.textContent = filtered.length;
+    if (budgetSuggestion) {
+        budgetSuggestion.classList.toggle('hidden', filtered.length > 0 || matchingFilters.length === 0);
+    }
 
     if (filtered.length === 0) {
         container.innerHTML = '';
         if (emptyState) emptyState.classList.remove('hidden');
+        if (emptyMessage) {
+            emptyMessage.textContent = matchingFilters.length > 0
+                ? `Ada ${matchingFilters.length} resep yang cocok, tetapi perkiraan biayanya melebihi batas ${new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(currentState.maxBudget)}.`
+                : 'Belum ada resep yang cocok dengan kata kunci dan kategori ini. Coba kata kunci lain atau reset filter.';
+        }
     } else {
         if (emptyState) emptyState.classList.add('hidden');
         container.innerHTML = filtered.map(rcp => createRecipeCardHTML(rcp)).join('');
@@ -1032,13 +1165,18 @@ function renderDashboardRecipes() {
 
 // FAVORITES SYSTEM
 function toggleFavorite(id) {
-    const idx = currentState.favorites.indexOf(id);
-    if (idx > -1) {
-        currentState.favorites.splice(idx, 1);
-    } else {
-        currentState.favorites.push(id);
+    if (!AppData.recipes.some(recipe => recipe.id === id)) {
+        console.error(`Cannot toggle unknown recipe favorite: ${id}`);
+        return;
     }
-    localStorage.setItem('dapurGizi_favs', JSON.stringify(currentState.favorites));
+
+    const favorites = new Set(currentState.favorites);
+    const wasFavorite = favorites.has(id);
+    if (wasFavorite) favorites.delete(id);
+    else favorites.add(id);
+
+    currentState.favorites = [...favorites];
+    const storageResult = storeFavorites(currentState.favorites);
 
     updateFavCounters();
     renderDashboardRecipes();
@@ -1052,6 +1190,77 @@ function toggleFavorite(id) {
     if (modalRecipeId === id) {
         updateModalFavBtnState(id);
     }
+    updateFavoriteButtons(id);
+
+    if (storageResult === 'session') {
+        showFavoriteFeedback('Favorit tersimpan sementara di tab ini. Penyimpanan permanen tidak tersedia.', 'warning');
+    } else if (storageResult === 'failed') {
+        showFavoriteFeedback('Favorit belum dapat disimpan oleh browser ini.', 'error');
+    } else {
+        showFavoriteFeedback(wasFavorite ? 'Resep dihapus dari favorit.' : 'Resep tersimpan di favorit.');
+    }
+}
+
+function updateFavoriteButtons(id) {
+    const recipe = AppData.recipes.find(item => item.id === id);
+    if (!recipe) return;
+    const isFavorite = currentState.favorites.includes(id);
+    document.querySelectorAll(`[onclick="toggleFavorite('${id}')"]`).forEach(button => {
+        button.setAttribute('aria-pressed', String(isFavorite));
+        button.setAttribute('aria-label', `${isFavorite ? 'Hapus dari' : 'Simpan ke'} favorit: ${recipe.title}`);
+        const icon = button.querySelector('i');
+        if (icon) icon.className = `${isFavorite ? 'fa-solid text-red-500' : 'fa-regular'} fa-heart text-sm`;
+    });
+}
+
+function handleFavoritesStorageChange(event) {
+    if (event.key !== FAVORITES_STORAGE_KEY && event.key !== null) return;
+    try {
+        currentState.favorites = event.newValue
+            ? parseStoredFavorites(event.newValue)
+            : event.key === FAVORITES_STORAGE_KEY
+                ? []
+                : getStoredFavorites();
+    } catch (error) {
+        console.error('Unable to synchronize saved favorites:', error);
+        currentState.favorites = getStoredFavorites();
+    }
+    try {
+        if (currentState.favorites.length) {
+            sessionStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(currentState.favorites));
+        } else {
+            sessionStorage.removeItem(FAVORITES_STORAGE_KEY);
+        }
+    } catch (error) {
+        console.error('Unable to synchronize temporary favorites:', error);
+    }
+    updateFavCounters();
+    renderDashboardRecipes();
+    renderHomepageFeatured();
+    if (currentState.activeTab === 'favorites') renderFavorites();
+
+    const modalRecipeId = document.getElementById('modal-fav-btn')?.getAttribute('data-recipe-id');
+    if (modalRecipeId) updateModalFavBtnState(modalRecipeId);
+}
+
+function showFavoriteFeedback(message, type = 'success') {
+    let feedback = document.getElementById('favorite-feedback');
+    if (!feedback) {
+        feedback = document.createElement('div');
+        feedback.id = 'favorite-feedback';
+        feedback.className = 'favorite-feedback';
+        feedback.setAttribute('role', 'status');
+        feedback.setAttribute('aria-live', 'polite');
+        document.body.append(feedback);
+    }
+
+    feedback.textContent = message;
+    feedback.dataset.type = type;
+    feedback.classList.add('is-visible');
+    window.clearTimeout(showFavoriteFeedback.timeoutId);
+    showFavoriteFeedback.timeoutId = window.setTimeout(() => {
+        feedback.classList.remove('is-visible');
+    }, 3200);
 }
 
 function updateFavCounters() {
@@ -1079,38 +1288,90 @@ function renderFavorites() {
     container.innerHTML = favRecipes.map(rcp => createRecipeCardHTML(rcp)).join('');
 }
 
+function getSafeExternalUrl(value) {
+    if (typeof value !== 'string' || !value.trim()) return null;
+    try {
+        const url = new URL(value.trim());
+        return url.protocol === 'https:' ? url.href : null;
+    } catch (error) {
+        return null;
+    }
+}
+
+function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, character => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[character]);
+}
+
+function renderExternalLink(url, label, icon, className) {
+    const safeUrl = getSafeExternalUrl(url);
+    if (!safeUrl) return '';
+    return `
+        <a href="${escapeHtml(safeUrl)}" target="_blank" rel="noopener noreferrer"
+            aria-label="${escapeHtml(label)} (buka di tab baru)"
+            class="${className}">
+            <i class="${icon}" aria-hidden="true"></i>
+            <span>${escapeHtml(label)}</span>
+            <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-[10px] opacity-60" aria-hidden="true"></i>
+        </a>
+    `;
+}
+
 // TEAM MEMBERS RENDERING
 function renderTeamMembers() {
     const container = document.getElementById('team-members-grid');
-    if (!container) return;
-
-    container.innerHTML = AppData.team.map(m => `
-                <article class="flex flex-col items-center rounded-2xl border border-slate-200/80 bg-white p-6 text-center shadow-sm">
-                    <div class="team-member-photo relative mb-4 flex h-28 w-28 items-center justify-center overflow-hidden rounded-full bg-gizi-100 text-2xl font-extrabold text-gizi-700 shadow-sm">
-                        ${m.image ? `<img src="${m.image}" alt="Foto ${m.name}" class="absolute inset-0 h-full w-full object-cover" onerror="this.hidden=true; this.nextElementSibling.hidden=false">` : ''}
-                        <span ${m.image ? 'hidden' : ''} aria-hidden="true">${m.name.split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase()}</span>
+    if (container) container.innerHTML = AppData.team.map((m, index) => {
+        const instagramUrl = getSafeExternalUrl(m.instagram);
+        return `
+            <article class="group relative flex min-w-0 items-center gap-3 rounded-2xl border border-slate-200/80 bg-white p-3 shadow-sm transition-shadow hover:border-gizi-200 hover:shadow-md sm:gap-4 sm:p-4">
+                <div class="team-member-photo relative flex shrink-0 items-center justify-center overflow-hidden bg-gradient-to-br from-gizi-50 to-emerald-100 font-black text-gizi-700 shadow-inner">
+                    ${m.image ? `<img src="${escapeHtml(m.image)}" alt="Foto ${escapeHtml(m.name)}" class="absolute inset-0 h-full w-full object-cover" onerror="this.hidden=true; this.nextElementSibling.hidden=false">` : ''}
+                    <span ${m.image ? 'hidden' : ''} aria-hidden="true">${escapeHtml(m.name.split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase())}</span>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <div class="mb-1 flex flex-wrap items-center gap-1.5">
+                        <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-slate-500">Anggota ${String(index + 1).padStart(2, '0')}</span>
+                        ${m.role === 'Ketua Kelompok' ? '<i class="fa-solid fa-star text-xs text-amber-500" aria-label="Ketua kelompok"></i>' : ''}
                     </div>
-                    <h3 class="font-extrabold text-slate-900 text-base">${m.name}</h3>
-                    <p class="mt-1 inline-flex rounded-full ${m.role === 'Ketua Kelompok' ? 'bg-amber-100 text-amber-800' : 'bg-gizi-50 text-gizi-700'} px-3 py-1 text-xs font-bold">${m.role}</p>
-                </article>
-            `).join('');
-
-    const contactContainer = document.getElementById('team-contact-links');
-    if (contactContainer) {
-        contactContainer.innerHTML = `
-            <a href="${teamContactLinks.instagram}" target="_blank" rel="noopener noreferrer"
-                class="touch-target inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm hover:border-pink-200 hover:bg-pink-50 hover:text-pink-700">
-                <i class="fa-brands fa-instagram text-pink-600" aria-hidden="true"></i>Instagram
-            </a>
-            <a href="${teamContactLinks.whatsapp}" target="_blank" rel="noopener noreferrer"
-                class="touch-target inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700">
-                <i class="fa-brands fa-whatsapp text-emerald-600" aria-hidden="true"></i>WhatsApp
-            </a>
-            <a href="${teamContactLinks.schoolWebsite}" target="_blank" rel="noopener noreferrer"
-                class="touch-target inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm hover:border-sky-200 hover:bg-sky-50 hover:text-sky-700">
-                <i class="fa-solid fa-globe text-sky-600" aria-hidden="true"></i>Website SMK
-            </a>
+                    <h3 class="break-words text-sm font-black leading-snug tracking-tight text-slate-900 sm:text-base">${escapeHtml(m.name)}</h3>
+                    <p class="mt-1 break-words text-xs font-semibold leading-snug ${m.role === 'Ketua Kelompok' ? 'text-amber-700' : 'text-gizi-700'}">${escapeHtml(m.role)}</p>
+                </div>
+                ${instagramUrl
+                    ? `<a href="${escapeHtml(instagramUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Instagram ${escapeHtml(m.name)} (buka di tab baru)" title="Instagram ${escapeHtml(m.name)}" class="touch-target flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-pink-100 bg-pink-50 text-pink-600 transition-colors hover:bg-pink-100"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>`
+                    : `<span role="img" aria-label="Instagram ${escapeHtml(m.name)} belum ditambahkan" title="Instagram belum ditambahkan" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-dashed border-slate-200 text-slate-400"><i class="fa-brands fa-instagram" aria-hidden="true"></i></span>`}
+            </article>
         `;
+    }).join('');
+
+    const schoolLinksContainer = document.getElementById('school-social-links');
+    if (schoolLinksContainer) {
+        const links = [
+            { key: 'website', label: 'Website SMK', icon: 'fa-globe', type: 'solid', style: 'border-sky-100 bg-sky-50 text-sky-700 hover:border-sky-200 hover:bg-sky-100' },
+            { key: 'instagram', label: 'Instagram SMK', icon: 'fa-instagram', type: 'brands', style: 'border-pink-100 bg-pink-50 text-pink-700 hover:border-pink-200 hover:bg-pink-100' },
+            { key: 'tiktok', label: 'TikTok SMK', icon: 'fa-tiktok', type: 'brands', style: 'border-slate-200 bg-slate-100 text-slate-800 hover:border-slate-300 hover:bg-slate-200' }
+        ];
+        schoolLinksContainer.innerHTML = links.map(link => {
+            const icon = `${link.type === 'brands' ? 'fa-brands' : 'fa-solid'} ${link.icon}`;
+            return renderExternalLink(
+                schoolLinks[link.key],
+                link.label,
+                icon,
+                `touch-target inline-flex min-w-0 items-center gap-3 rounded-2xl border px-4 py-3 text-sm font-bold shadow-sm transition-all ${link.style}`
+            ) || `
+                <div class="flex min-w-0 items-center gap-3 rounded-2xl border border-dashed border-slate-200 bg-white px-4 py-3 text-sm text-slate-400">
+                    <i class="${icon}" aria-hidden="true"></i>
+                    <span class="min-w-0">
+                        <span class="block font-bold text-slate-600">${escapeHtml(link.label)}</span>
+                        <span class="block text-xs">Tautan resmi belum ditambahkan</span>
+                    </span>
+                </div>
+            `;
+        }).join('');
     }
 }
 
@@ -1261,10 +1522,14 @@ function updateModalFavBtnState(id) {
     const icon = favBtn.querySelector('i');
 
     if (isFav) {
+        favBtn.setAttribute('aria-pressed', 'true');
+        favBtn.setAttribute('aria-label', 'Hapus dari favorit');
         favBtn.className = "px-5 py-2.5 rounded-xl bg-red-50 border border-red-200 text-sm font-bold flex items-center space-x-2 text-red-600 hover:bg-red-100";
         if (icon) icon.className = "fa-solid fa-heart text-red-500";
         if (favText) favText.textContent = "Disimpan di Favorit";
     } else {
+        favBtn.setAttribute('aria-pressed', 'false');
+        favBtn.setAttribute('aria-label', 'Simpan favorit');
         favBtn.className = "px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-bold flex items-center space-x-2 text-slate-700 hover:bg-slate-50";
         if (icon) icon.className = "fa-regular fa-heart text-red-500";
         if (favText) favText.textContent = "Simpan Favorit";

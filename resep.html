@@ -42,7 +42,7 @@
                 <nav aria-label="Navigasi utama" class="desktop-nav items-center space-x-1">
                     <a href="./index.html" id="nav-home"
                         data-page="home"
-                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-gizi-700 bg-gizi-50">
+                        class="nav-btn px-4 py-2.5 rounded-xl font-semibold text-sm transition-all text-slate-600 hover:text-gizi-600 hover:bg-slate-100">
                         <i class="fa-solid fa-house mr-2"></i>Beranda
                     </a>
                     <a href="./cek-stunting.html" id="nav-stunting"
@@ -141,15 +141,19 @@
 
                             <!-- Live Auto Search Input -->
                             <div>
-                                <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Cari
+                                <label for="search-input" class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Cari
                                     Resep / Bahan</label>
                                 <div class="relative">
-                                    <input type="text" id="search-input" oninput="handleFilterChange()"
+                                    <input type="search" id="search-input" oninput="handleFilterChange()"
+                                        aria-describedby="search-help"
                                         placeholder="Ketik nama makanan atau bahan..."
                                         class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-gizi-500/20 focus:border-gizi-500 transition-all">
                                     <i
                                         class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-sm"></i>
                                 </div>
+                                <p id="search-help" class="mt-1.5 text-[11px] leading-relaxed text-slate-400">
+                                    Cari nama resep, bahan, atau kata dari langkah memasak.
+                                </p>
                             </div>
 
                             <!-- Illustrative Cost Slider -->
@@ -159,14 +163,14 @@
                                         biaya maksimal / resep</label>
                                     <span id="budget-value"
                                         class="self-start whitespace-nowrap text-sm font-extrabold text-gizi-700 bg-gizi-50 px-2.5 py-1 rounded-lg border border-gizi-200 sm:self-auto">
-                                        Rp 60.000
+                                        Rp 0
                                     </span>
                                 </div>
-                                <input type="range" id="budget-slider" min="10000" max="60000" step="1000" value="60000"
+                                <input type="range" id="budget-slider" min="0" max="60000" step="1000" value="0"
                                     oninput="updateBudgetDisplay(this.value); handleFilterChange();"
                                     class="w-full accent-gizi-600 cursor-pointer h-2 bg-slate-200 rounded-lg">
                                 <div class="flex justify-between text-[10px] text-slate-400 font-semibold mt-1">
-                                    <span>Rp 10rb</span>
+                                    <span>Rp 0</span>
                                     <span>Rp 60rb</span>
                                 </div>
                             </div>
@@ -193,7 +197,7 @@
                         <!-- Dynamic Info Bar -->
                         <div
                             class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200/80 mb-6">
-                            <span class="text-sm font-semibold text-slate-600">
+                            <span class="text-sm font-semibold text-slate-600" role="status" aria-live="polite">
                                 Menampilkan <strong id="results-count" class="text-gizi-700">0</strong> resep gizi
                             </span>
                             <span class="text-xs text-slate-400 font-medium hidden sm:inline">
@@ -211,8 +215,11 @@
                             class="hidden text-center py-16 bg-white rounded-2xl border border-dashed border-slate-300">
                             <i class="fa-solid fa-utensils text-4xl text-slate-300 mb-3"></i>
                             <p class="font-bold text-slate-700">Tidak ada resep yang sesuai</p>
-                            <p class="text-xs text-slate-400 mt-1">Coba sesuaikan anggaran contoh atau kata kunci
-                                pencarian Anda.</p>
+                            <p id="empty-state-message" class="text-xs text-slate-400 mt-1">Belum ada resep yang cocok dengan kata kunci dan kategori ini. Coba kata kunci lain atau reset filter.</p>
+                            <button id="empty-state-budget-suggestion" type="button" onclick="showAllBudgetRecipes()"
+                                class="hidden mt-4 px-4 py-2 bg-amber-50 text-amber-800 text-xs font-bold rounded-lg border border-amber-200 hover:bg-amber-100">
+                                Tampilkan resep hingga Rp 60.000
+                            </button>
                             <button onclick="resetFilters()"
                                 class="mt-4 px-4 py-2 bg-gizi-50 text-gizi-700 text-xs font-bold rounded-lg border border-gizi-200 hover:bg-gizi-100">
                                 Reset Semua Filter
