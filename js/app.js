@@ -520,7 +520,7 @@ const AppData = {
             instagram: ""
         },
         {
-            name: "Nanda Ardiansyah",
+            name: "Nanda Aditama",
             role: "Anggota tim",
             image: "",
             instagram: ""
