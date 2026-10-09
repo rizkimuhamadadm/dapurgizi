@@ -796,15 +796,26 @@ function getCurrentTab() {
 
 function updateActiveNav() {
     const currentTab = getCurrentTab();
-    document.querySelectorAll('.nav-btn, .mobile-nav-link').forEach(link => {
+    document.querySelectorAll('.nav-btn, .mobile-nav-link, .mobile-favorite-link').forEach(link => {
         const isCurrent = link.dataset.page === currentTab;
         link.classList.remove('text-gizi-700', 'bg-gizi-50', 'text-slate-600', 'text-slate-700');
         if (isCurrent) {
             link.classList.add('text-gizi-700', 'bg-gizi-50');
             link.setAttribute('aria-current', 'page');
+            if (link.classList.contains('mobile-favorite-link')) {
+                link.classList.remove('bg-slate-100', 'hover:text-red-500');
+                link.querySelector('i')?.classList.remove('text-red-500');
+                link.querySelector('i')?.classList.add('text-gizi-700');
+            }
         } else {
             link.classList.add(link.classList.contains('nav-btn') ? 'text-slate-600' : 'text-slate-700');
             link.removeAttribute('aria-current');
+            if (link.classList.contains('mobile-favorite-link')) {
+                link.classList.remove('bg-gizi-50');
+                link.classList.add('bg-slate-100', 'hover:text-red-500');
+                link.querySelector('i')?.classList.remove('text-gizi-700');
+                link.querySelector('i')?.classList.add('text-red-500');
+            }
         }
     });
 }

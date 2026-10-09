@@ -59,6 +59,13 @@ body {
     min-height: 44px;
 }
 
+.mobile-favorite-link[aria-current="page"],
+.mobile-favorite-link[aria-current="page"]:hover {
+    border: 1px solid #bbf7d0;
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
 .district-dot-grid {
     display: grid;
     grid-template-columns: repeat(10, minmax(0, 1fr));
