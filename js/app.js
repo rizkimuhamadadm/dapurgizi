@@ -78,7 +78,7 @@ const AppData = {
             ageRangeLabel: "6-11 bulan",
             portionUnit: "2 porsi kecil",
             cookTime: "25 menit",
-            image: "",
+            image: "./assets/recipe-photos/rice-porridge.jpg",
             nutrition: "Contoh MPASI dengan sumber protein hewani dan nabati. Sesuaikan tekstur menurut kemampuan makan anak; bukan terapi stunting.",
             ingredients: [
                 "30 gram beras, cuci bersih",
@@ -104,7 +104,7 @@ const AppData = {
             ageRangeLabel: "6-23 bulan",
             portionUnit: "2 porsi kecil",
             cookTime: "30 menit",
-            image: "",
+            image: "./assets/recipe-photos/rice-porridge.jpg",
             nutrition: "Contoh MPASI dengan ikan matang sebagai lauk. Periksa dan singkirkan duri dengan teliti; sajikan sesuai tekstur dan porsi anak.",
             ingredients: [
                 "30 gram beras, cuci bersih",
@@ -128,7 +128,7 @@ const AppData = {
             estimatedCost: 20000,
             portionUnit: "2 porsi",
             cookTime: "20 menit",
-            image: "",
+            image: "./assets/recipe-photos/egg-rice-bowl.jpg",
             nutrition: "Contoh menu sederhana. Untuk kehamilan, pilih telur matang sempurna, sayur yang dicuci bersih, dan ikuti arahan tenaga kesehatan.",
             ingredients: [
                 "2 butir telur",
@@ -153,7 +153,7 @@ const AppData = {
             estimatedCost: 24000,
             portionUnit: "2 porsi",
             cookTime: "25 menit",
-            image: "",
+            image: "./assets/recipe-photos/vegetable-bowl.jpg",
             nutrition: "Contoh menu keluarga berisi lauk nabati, sayuran, dan makanan pokok. Porsi anak perlu disesuaikan usia dan nafsu makannya.",
             ingredients: [
                 "100 gram tempe",
@@ -175,7 +175,7 @@ const AppData = {
             estimatedCost: 30000,
             portionUnit: "2 porsi",
             cookTime: "35 menit",
-            image: "",
+            image: "./assets/recipe-photos/fish.jpg",
             nutrition: "Contoh lauk ikan yang dimasak matang. Periksa duri sebelum disajikan; hindari klaim manfaat medis tanpa penilaian ahli.",
             ingredients: [
                 "2 potong ikan segar",
@@ -201,7 +201,7 @@ const AppData = {
             estimatedCost: 28000,
             portionUnit: "2 porsi kecil",
             cookTime: "35 menit",
-            image: "",
+            image: "./assets/recipe-photos/rice-porridge.jpg",
             nutrition: "Contoh MPASI dengan daging matang dan sayuran. Sesuaikan tekstur dengan usia; bukan pengganti pemeriksaan atau terapi.",
             ingredients: [
                 "30 gram beras, cuci bersih",
@@ -227,6 +227,7 @@ const AppData = {
             estimatedCost: 24000,
             portionUnit: "2 porsi kecil",
             cookTime: "35 menit",
+            image: "./assets/recipe-photos/rice-porridge.jpg",
             nutrition: "Contoh MPASI dengan ayam dan sayur. Sajikan lumat untuk bayi yang baru mulai makan, lalu tingkatkan tekstur sesuai kemampuan.",
             ingredients: [
                 "30 gram beras",
@@ -252,6 +253,7 @@ const AppData = {
             estimatedCost: 23000,
             portionUnit: "2 porsi kecil",
             cookTime: "30 menit",
+            image: "./assets/recipe-photos/rice-porridge.jpg",
             nutrition: "Contoh MPASI dengan ikan dan sayur. Pastikan ikan matang, bebas duri, dan teksturnya aman untuk kemampuan makan anak.",
             ingredients: [
                 "100 gram kentang, kupas dan cuci",
@@ -277,6 +279,7 @@ const AppData = {
             estimatedCost: 21000,
             portionUnit: "2 porsi kecil",
             cookTime: "30 menit",
+            image: "./assets/recipe-photos/rice-porridge.jpg",
             nutrition: "Contoh MPASI dengan telur matang, tahu, dan brokoli. Potong atau lumatkan agar sesuai kemampuan mengunyah.",
             ingredients: [
                 "60 gram nasi matang",
@@ -302,6 +305,7 @@ const AppData = {
             estimatedCost: 28000,
             portionUnit: "2 porsi",
             cookTime: "35 menit",
+            image: "./assets/recipe-photos/soup.jpg",
             nutrition: "Contoh menu keluarga berisi lauk, sayur, dan sumber karbohidrat. Sesuaikan potongan dan porsi anak; batasi garam.",
             ingredients: [
                 "100 gram ayam tanpa kulit",
@@ -327,6 +331,7 @@ const AppData = {
             estimatedCost: 22000,
             portionUnit: "2 porsi",
             cookTime: "25 menit",
+            image: "./assets/recipe-photos/vegetable-bowl.jpg",
             nutrition: "Contoh menu lauk nabati, sayur, dan makanan pokok. Masak hingga matang dan sesuaikan ukuran potongan.",
             ingredients: [
                 "100 gram tempe, potong kecil",
@@ -352,6 +357,7 @@ const AppData = {
             estimatedCost: 18000,
             portionUnit: "2 porsi",
             cookTime: "20 menit",
+            image: "./assets/recipe-photos/egg-rice-bowl.jpg",
             nutrition: "Contoh menu sederhana dengan telur matang dan sayuran. Sertakan buah atau sayur lain sesuai ketersediaan.",
             ingredients: [
                 "2 butir telur",
@@ -375,6 +381,7 @@ const AppData = {
             estimatedCost: 26000,
             portionUnit: "2 porsi",
             cookTime: "50 menit",
+            image: "./assets/recipe-photos/soup.jpg",
             nutrition: "Contoh menu sumber protein nabati dan sayur. Kacang merah harus direndam dan dimasak sampai benar-benar lunak.",
             ingredients: [
                 "100 gram kacang merah kering",
@@ -398,6 +405,7 @@ const AppData = {
             estimatedCost: 30000,
             portionUnit: "2 porsi",
             cookTime: "30 menit",
+            image: "./assets/recipe-photos/fish.jpg",
             nutrition: "Contoh menu ikan matang, tahu, dan sayur. Pilih ikan rendah merkuri, pastikan matang, dan periksa durinya.",
             ingredients: [
                 "2 potong ikan rendah merkuri, bersihkan",
@@ -421,6 +429,7 @@ const AppData = {
             estimatedCost: 21000,
             portionUnit: "2 porsi",
             cookTime: "25 menit",
+            image: "./assets/recipe-photos/soup.jpg",
             nutrition: "Contoh hidangan beragam untuk ibu menyusui; tidak ada satu menu yang menjamin produksi ASI meningkat.",
             ingredients: [
                 "2 butir telur",
@@ -444,6 +453,7 @@ const AppData = {
             estimatedCost: 23000,
             portionUnit: "2 porsi",
             cookTime: "35 menit",
+            image: "./assets/recipe-photos/vegetable-stew.jpg",
             nutrition: "Contoh menu dengan lauk nabati, pangan pokok, dan sayur. Sesuaikan porsi dengan kebutuhan masing-masing.",
             ingredients: [
                 "150 gram tempe",
@@ -467,6 +477,7 @@ const AppData = {
             estimatedCost: 19000,
             portionUnit: "2 porsi",
             cookTime: "35 menit",
+            image: "./assets/recipe-photos/meal.jpg",
             nutrition: "Contoh lauk nabati dengan jagung. Padukan dengan sayur dan buah untuk menu yang lebih beragam.",
             ingredients: [
                 "150 gram tahu putih",
@@ -493,6 +504,7 @@ const AppData = {
             estimatedCost: 27000,
             portionUnit: "2 porsi",
             cookTime: "30 menit",
+            image: "./assets/recipe-photos/egg-rice-bowl.jpg",
             nutrition: "Contoh menu keluarga dengan ayam matang, sayuran, dan nasi. Variasikan jenis sayur dan lauk sesuai ketersediaan.",
             ingredients: [
                 "100 gram ayam tanpa kulit",
@@ -703,7 +715,7 @@ function storeFavorites(favorites) {
     }
 }
 
-const DEFAULT_MAX_BUDGET = 60000;
+const DEFAULT_MAX_BUDGET = 0;
 const normalizeSearchText = value => String(value ?? '')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -1190,12 +1202,17 @@ function createRecipeCardHTML(rcp) {
     const isFav = currentState.favorites.includes(rcp.id);
     const formattedPrice = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(rcp.estimatedCost);
     const visual = getRecipeVisual(rcp.category);
+    const recipeImage = rcp.image
+        ? `<img src="${rcp.image}" alt="" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.remove(); this.nextElementSibling.style.display = ''">`
+        : '';
 
     return `
                 <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col group">
                     <div class="relative h-40 w-full overflow-hidden">
                         <button type="button" aria-label="Lihat detail ${rcp.title}" onclick="openRecipeModal('${rcp.id}', event)" class="absolute inset-0 flex cursor-pointer items-center justify-center overflow-hidden ${visual.background}">
-                            <i class="fa-solid ${visual.icon} text-5xl ${visual.foreground}" aria-hidden="true"></i>
+                            ${recipeImage}
+                            <i style="${rcp.image ? 'display: none;' : ''}" class="fa-solid ${visual.icon} text-5xl ${visual.foreground}" aria-hidden="true"></i>
+                            <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent" aria-hidden="true"></span>
                             <span class="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold text-slate-600">${rcp.ageRangeLabel || 'Semua usia'}</span>
                             <span class="absolute top-3 left-3 rounded-full bg-gizi-600 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white shadow-md">${rcp.category}</span>
                             <span class="absolute bottom-3 right-3 rounded-xl bg-white/90 px-3 py-2 text-right">
@@ -1213,6 +1230,7 @@ function createRecipeCardHTML(rcp) {
                             <h3 role="button" tabindex="0" aria-label="Lihat detail ${rcp.title}" onkeydown="handleModalTriggerKeydown(event)" onclick="openRecipeModal('${rcp.id}', event)" class="font-bold text-slate-900 text-base leading-snug hover:text-gizi-600 cursor-pointer line-clamp-1">
                                 ${rcp.title}
                             </h3>
+                            ${rcp.image ? '<p class="mt-1 text-[10px] font-semibold uppercase tracking-wide text-slate-400">Foto ilustrasi</p>' : ''}
                             <p class="text-xs text-slate-500 mt-1 line-clamp-2">${rcp.nutrition}</p>
                         </div>
 
@@ -1585,8 +1603,27 @@ function openRecipeModal(id, triggerEvent) {
     const favBtn = document.getElementById('modal-fav-btn');
 
     const visual = getRecipeVisual(rcp.category);
-    if (modalVisual) modalVisual.className = `relative flex h-64 w-full items-center justify-center sm:h-72 ${visual.background}`;
-    if (modalIcon) modalIcon.className = `fa-solid ${visual.icon} text-6xl ${visual.foreground}`;
+    if (modalVisual) {
+        modalVisual.className = `relative flex h-64 w-full items-center justify-center overflow-hidden sm:h-72 ${visual.background}`;
+        modalVisual.style.backgroundImage = rcp.image
+            ? `linear-gradient(to top, rgba(2, 6, 23, 0.65), rgba(2, 6, 23, 0.02) 55%), url("${rcp.image}")`
+            : '';
+        modalVisual.style.backgroundSize = 'cover';
+        modalVisual.style.backgroundPosition = 'center';
+
+        let photoCaption = modalVisual.querySelector('.recipe-photo-caption');
+        if (!photoCaption) {
+            photoCaption = document.createElement('span');
+            photoCaption.className = 'recipe-photo-caption absolute left-4 top-4 rounded-full bg-slate-950/70 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm';
+            photoCaption.textContent = 'Foto ilustrasi';
+            modalVisual.appendChild(photoCaption);
+        }
+        photoCaption.hidden = !rcp.image;
+    }
+    if (modalIcon) {
+        modalIcon.className = `fa-solid ${visual.icon} text-6xl ${visual.foreground}`;
+        modalIcon.style.display = rcp.image ? 'none' : '';
+    }
     if (modalCat) modalCat.textContent = rcp.category;
     if (modalTitle) modalTitle.textContent = rcp.title;
     if (modalPrice) modalPrice.textContent = formattedPrice;

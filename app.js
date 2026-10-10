@@ -554,7 +554,7 @@ const currentState = {
     activeTab: 'home',
     selectedCategory: new URLSearchParams(window.location.search).get('category') || 'all',
     categoryModalId: null,
-    maxBudget: 60000,
+    maxBudget: 0,
     searchQuery: '',
     favorites: getStoredFavorites(),
     activeModalId: null,
@@ -931,12 +931,12 @@ function handleFilterChange() {
 
 function resetFilters() {
     currentState.selectedCategory = 'all';
-    currentState.maxBudget = 60000;
+    currentState.maxBudget = 0;
     currentState.searchQuery = '';
 
     const slider = document.getElementById('budget-slider');
-    if (slider) slider.value = 60000;
-    updateBudgetDisplay(60000);
+    if (slider) slider.value = 0;
+    updateBudgetDisplay(0);
 
     const searchInput = document.getElementById('search-input');
     if (searchInput) searchInput.value = '';
