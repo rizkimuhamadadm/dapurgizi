@@ -789,9 +789,10 @@ function viewCategoryRecipes() {
 }
 
 function getCurrentTab() {
-    const currentPath = window.location.pathname.split('/').pop();
+    const pathSegments = window.location.pathname.replace(/\/+$/, '').split('/');
+    const currentPath = (pathSegments.pop() || 'index.html').toLowerCase().replace(/\.html$/, '');
     return Object.entries(pagePaths)
-        .find(([, path]) => path === currentPath)?.[0] || 'home';
+        .find(([, path]) => path.toLowerCase().replace(/\.html$/, '') === currentPath)?.[0] || 'home';
 }
 
 function updateActiveNav() {
@@ -1449,8 +1450,8 @@ function renderTeamMembers() {
                     <p class="mt-1 break-words text-xs font-semibold leading-snug ${m.role === 'Ketua Kelompok' ? 'text-amber-700' : 'text-gizi-700'}">${escapeHtml(m.role)}</p>
                 </div>
                 ${instagramUrl
-                    ? `<a href="${escapeHtml(instagramUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Instagram ${escapeHtml(m.name)} (buka di tab baru)" title="Instagram ${escapeHtml(m.name)}" class="team-member-instagram touch-target flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-pink-100 bg-pink-50 text-pink-600"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>`
-                    : `<span role="img" aria-label="Instagram ${escapeHtml(m.name)} belum ditambahkan" title="Instagram belum ditambahkan" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50 text-slate-400"><i class="fa-brands fa-instagram" aria-hidden="true"></i></span>`}
+                    ? `<a href="${escapeHtml(instagramUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Instagram ${escapeHtml(m.name)} (buka di tab baru)" title="Instagram ${escapeHtml(m.name)}" class="team-member-instagram touch-target ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-pink-100 bg-pink-50 text-pink-600"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>`
+                    : `<span role="img" aria-label="Instagram ${escapeHtml(m.name)} belum ditambahkan" title="Instagram belum ditambahkan" class="ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50 text-slate-400"><i class="fa-brands fa-instagram" aria-hidden="true"></i></span>`}
             </article>
         `;
     }).join('');

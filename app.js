@@ -621,9 +621,10 @@ function viewCategoryRecipes() {
 }
 
 function getCurrentTab() {
-    const currentPath = window.location.pathname.split('/').pop();
+    const pathSegments = window.location.pathname.replace(/\/+$/, '').split('/');
+    const currentPath = (pathSegments.pop() || 'index.html').toLowerCase().replace(/\.html$/, '');
     return Object.entries(pagePaths)
-        .find(([, path]) => path === currentPath)?.[0] || 'home';
+        .find(([, path]) => path.toLowerCase().replace(/\.html$/, '') === currentPath)?.[0] || 'home';
 }
 
 function updateActiveNav() {

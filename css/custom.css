@@ -254,6 +254,20 @@ body {
     border-radius: 1rem;
 }
 
+.school-link-grid > a {
+    height: 100%;
+}
+
+.school-channel-link > i:first-child {
+    display: inline-grid;
+    width: 2rem;
+    height: 2rem;
+    flex: 0 0 2rem;
+    place-items: center;
+    border-radius: 0.65rem;
+    background: rgba(255, 255, 255, 0.72);
+}
+
 .school-channel-link {
     transform: translateY(0);
     transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
@@ -291,6 +305,12 @@ body {
     border-color: #000;
     background-color: #000;
     color: #fff;
+}
+
+.school-channel-website:is(:hover, :focus-visible, :active) > i:first-child,
+.school-channel-instagram:is(:hover, :focus-visible, :active) > i:first-child,
+.school-channel-tiktok:is(:hover, :focus-visible, :active) > i:first-child {
+    background: rgba(255, 255, 255, 0.18);
 }
 
 .team-member-instagram {
