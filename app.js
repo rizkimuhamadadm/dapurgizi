@@ -515,7 +515,7 @@ const AppData = {
         {
             name: "Adam Maulana",
             role: "Anggota Kelompok Dapur Gizi",
-            image: ""
+            image: "./img/rizkimuhamadadam.webp"
         },
         {
             name: "Nanda Aditama",
@@ -905,6 +905,7 @@ function updateBudgetDisplay(val) {
     const formatted = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(val);
     const budgetLabel = document.getElementById('budget-value');
     if (budgetLabel) budgetLabel.textContent = formatted;
+    document.getElementById('budget-slider')?.setAttribute('aria-valuetext', `${formatted} per resep`);
 }
 
 function setCategoryFilter(catId) {

@@ -516,20 +516,20 @@ const AppData = {
         {
             name: "Rizki Muhamad Adam",
             role: "Anggota tim",
-            image: "",
+            image: "./img/rizkimuhamadadam.webp",
             instagram: "https://www.instagram.com/rizkimuhamadadam?vrfl=ZmVrMmV6ZWt1aXRz"
         },
         {
             name: "Nanda Aditama",
             role: "Anggota tim",
-            image: "",
+            image: "./img/nandaaditama.webp",
             instagram: "https://www.instagram.com/nndaadtm?xtok=YjY1OXlqODdiN2E0"
         },
         {
             name: "Harine  Aurelia Putri",
             role: "Ketua Kelompok",
-            image: "",
-            instagram: ""
+            image: "./img/harineaureliaputri.webp",
+            instagram: "https://www.instagram.com/https.hrnn?srtk=MTQ5OW55em8wNDYyeA=="
         }
     ]
 };
@@ -703,7 +703,7 @@ function storeFavorites(favorites) {
     }
 }
 
-const DEFAULT_MAX_BUDGET = 0;
+const DEFAULT_MAX_BUDGET = 60000;
 const normalizeSearchText = value => String(value ?? '')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -1119,6 +1119,7 @@ function updateBudgetDisplay(val) {
     const formatted = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(val);
     const budgetLabel = document.getElementById('budget-value');
     if (budgetLabel) budgetLabel.textContent = formatted;
+    document.getElementById('budget-slider')?.setAttribute('aria-valuetext', `${formatted} per resep`);
 }
 
 function setCategoryFilter(catId) {
@@ -1448,8 +1449,8 @@ function renderTeamMembers() {
                     <p class="mt-1 break-words text-xs font-semibold leading-snug ${m.role === 'Ketua Kelompok' ? 'text-amber-700' : 'text-gizi-700'}">${escapeHtml(m.role)}</p>
                 </div>
                 ${instagramUrl
-                    ? `<a href="${escapeHtml(instagramUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Instagram ${escapeHtml(m.name)} (buka di tab baru)" title="Instagram ${escapeHtml(m.name)}" class="touch-target flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-pink-100 bg-pink-50 text-pink-600 transition-colors hover:bg-pink-100"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>`
-                    : `<span role="img" aria-label="Instagram ${escapeHtml(m.name)} belum ditambahkan" title="Instagram belum ditambahkan" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-dashed border-slate-200 text-slate-400"><i class="fa-brands fa-instagram" aria-hidden="true"></i></span>`}
+                    ? `<a href="${escapeHtml(instagramUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Instagram ${escapeHtml(m.name)} (buka di tab baru)" title="Instagram ${escapeHtml(m.name)}" class="team-member-instagram touch-target flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-pink-100 bg-pink-50 text-pink-600"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>`
+                    : `<span role="img" aria-label="Instagram ${escapeHtml(m.name)} belum ditambahkan" title="Instagram belum ditambahkan" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50 text-slate-400"><i class="fa-brands fa-instagram" aria-hidden="true"></i></span>`}
             </article>
         `;
     }).join('');
@@ -1457,9 +1458,9 @@ function renderTeamMembers() {
     const schoolLinksContainer = document.getElementById('school-social-links');
     if (schoolLinksContainer) {
         const links = [
-            { key: 'website', label: 'Website SMK', icon: 'fa-globe', type: 'solid', style: 'border-sky-100 bg-sky-50 text-sky-700 hover:border-sky-200 hover:bg-sky-100' },
-            { key: 'instagram', label: 'Instagram SMK', icon: 'fa-instagram', type: 'brands', style: 'border-pink-100 bg-pink-50 text-pink-700 hover:border-pink-200 hover:bg-pink-100' },
-            { key: 'tiktok', label: 'TikTok SMK', icon: 'fa-tiktok', type: 'brands', style: 'border-slate-200 bg-slate-100 text-slate-800 hover:border-slate-300 hover:bg-slate-200' }
+            { key: 'website', label: 'Website SMK', icon: 'fa-globe', type: 'solid', style: 'school-channel-website border-sky-100 bg-sky-50 text-sky-700' },
+            { key: 'instagram', label: 'Instagram SMK', icon: 'fa-instagram', type: 'brands', style: 'school-channel-instagram border-pink-100 bg-pink-50 text-pink-700' },
+            { key: 'tiktok', label: 'TikTok SMK', icon: 'fa-tiktok', type: 'brands', style: 'school-channel-tiktok border-slate-200 bg-slate-100 text-slate-900' }
         ];
         schoolLinksContainer.innerHTML = links.map(link => {
             const icon = `${link.type === 'brands' ? 'fa-brands' : 'fa-solid'} ${link.icon}`;
@@ -1467,7 +1468,7 @@ function renderTeamMembers() {
                 schoolLinks[link.key],
                 link.label,
                 icon,
-                `touch-target inline-flex min-w-0 items-center gap-3 rounded-2xl border px-4 py-3 text-sm font-bold shadow-sm transition-all ${link.style}`
+                `school-channel-link touch-target inline-flex min-w-0 items-center gap-3 rounded-2xl border px-4 py-3 text-sm font-bold shadow-sm transition-all ${link.style}`
             ) || `
                 <div class="flex min-w-0 items-center gap-3 rounded-2xl border border-dashed border-slate-200 bg-white px-4 py-3 text-sm text-slate-400">
                     <i class="${icon}" aria-hidden="true"></i>

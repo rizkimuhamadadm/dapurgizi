@@ -229,10 +229,16 @@ body {
 }
 
 .team-member-photo {
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 1rem;
-    font-size: 1rem;
+    width: 5rem;
+    height: 5rem;
+    border: 3px solid #fff;
+    border-radius: 9999px;
+    font-size: 1.125rem;
+}
+
+.team-member-photo img {
+    object-position: center 35%;
+    transform: scale(1.4);
 }
 
 .school-link-grid {
@@ -248,10 +254,71 @@ body {
     border-radius: 1rem;
 }
 
+.school-channel-link {
+    transform: translateY(0);
+    transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.school-channel-link:hover,
+.school-channel-link:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+}
+
+.school-channel-link:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.school-channel-website:hover,
+.school-channel-website:focus-visible,
+.school-channel-website:active {
+    border-color: #0284c7;
+    background-color: #0284c7;
+    color: #fff;
+}
+
+.school-channel-instagram:hover,
+.school-channel-instagram:focus-visible,
+.school-channel-instagram:active {
+    border-color: #db2777;
+    background: linear-gradient(115deg, #f97316, #ec4899 55%, #8b5cf6);
+    color: #fff;
+}
+
+.school-channel-tiktok:hover,
+.school-channel-tiktok:focus-visible,
+.school-channel-tiktok:active {
+    border-color: #000;
+    background-color: #000;
+    color: #fff;
+}
+
+.team-member-instagram {
+    transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.team-member-instagram:hover,
+.team-member-instagram:focus-visible {
+    transform: translateY(-2px);
+    border-color: #db2777;
+    background: linear-gradient(135deg, #f97316, #ec4899 55%, #8b5cf6);
+    color: #fff;
+    box-shadow: 0 6px 14px rgba(219, 39, 119, 0.22);
+}
+
+.team-member-instagram:active {
+    transform: translateY(0) scale(0.96);
+}
+
 @media (min-width: 640px) {
     .team-member-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1rem;
+    }
+
+    .team-member-photo {
+        width: 6rem;
+        height: 6rem;
     }
 
     .school-link-grid {
@@ -389,6 +456,11 @@ input:focus-visible,
 select:focus-visible {
     outline: 3px solid rgba(22, 163, 74, 0.35);
     outline-offset: 2px;
+}
+
+input[aria-invalid="true"] {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
 }
 
 @media (max-width: 640px) {
