@@ -79,7 +79,7 @@ const AppData = {
             portionUnit: "2 porsi kecil",
             cookTime: "25 menit",
             image: "",
-            nutrition: "Contoh MPASI dengan sumber protein hewani dan nabati. Sesuaikan tekstur menurut kemampuan makan anak; bukan terapi stunting.",
+            nutrition: "MPASI dengan sumber protein hewani dan nabati. Sesuaikan tekstur menurut kemampuan makan anak; bukan terapi stunting.",
             ingredients: [
                 "30 gram beras, cuci bersih",
                 "1 butir telur, matang sempurna",
