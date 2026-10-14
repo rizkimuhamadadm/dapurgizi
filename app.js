@@ -5,7 +5,7 @@ const AppData = {
             name: "Bayi MPASI",
             icon: "fa-baby",
             badgeColor: "bg-amber-500",
-            description: "Contoh menu pendamping ASI untuk bayi mulai usia 6 bulan, disesuaikan teksturnya dengan kemampuan makan anak.",
+            description: "Menu pendamping ASI untuk bayi mulai usia 6 bulan, disesuaikan teksturnya dengan kemampuan makan anak.",
             safeFoods: [
                 "Telur matang, ikan tanpa duri, daging, tahu, dan kacang-kacangan",
                 "Sayuran dan buah dengan tekstur sesuai usia",
