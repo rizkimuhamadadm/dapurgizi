@@ -5,7 +5,7 @@ const AppData = {
             name: "Bayi MPASI",
             icon: "fa-baby",
             badgeColor: "bg-amber-500",
-            description: "Contoh menu pendamping ASI untuk bayi mulai usia 6 bulan, disesuaikan teksturnya dengan kemampuan makan anak.",
+            description: "Pilihan menu pendamping ASI untuk bayi mulai usia 6 bulan, dengan tekstur yang disesuaikan kemampuan makan anak.",
             safeFoods: [
                 "Telur matang, ikan tanpa duri, daging, tahu, dan kacang-kacangan",
                 "Sayuran dan buah dengan tekstur sesuai usia",
@@ -18,7 +18,7 @@ const AppData = {
             name: "Ibu Hamil",
             icon: "fa-person-pregnant",
             badgeColor: "bg-rose-500",
-            description: "Contoh pilihan lauk, sayur, dan sumber pangan beragam. Kebutuhan khusus sebaiknya dibahas dengan tenaga kesehatan.",
+            description: "Pilih lauk, sayur, dan sumber pangan yang beragam. Untuk kebutuhan khusus, konsultasikan dengan tenaga kesehatan.",
             safeFoods: [
                 "Telur dan daging dimasak hingga matang",
                 "Sayur berdaun hijau, tahu, dan tempe",
@@ -44,7 +44,7 @@ const AppData = {
             name: "Dewasa",
             icon: "fa-user-check",
             badgeColor: "bg-sky-500",
-            description: "Contoh menu harian beragam dengan lauk, sayur, buah, dan sumber karbohidrat.",
+            description: "Susun menu harian beragam dengan lauk, sayur, buah, dan sumber karbohidrat.",
             safeFoods: [
                 "Lauk hewani atau nabati",
                 "Nasi, kentang, jagung, atau pangan pokok lain",
@@ -57,7 +57,7 @@ const AppData = {
             name: "Keluarga",
             icon: "fa-house-chimney-window",
             badgeColor: "bg-indigo-500",
-            description: "Contoh menu keluarga yang dapat disesuaikan porsi, kebutuhan, dan bahan yang tersedia.",
+            description: "Sajikan menu keluarga yang seimbang dengan porsi dan bahan yang disesuaikan kebutuhan.",
             safeFoods: [
                 "Padukan makanan pokok, lauk, sayur, dan buah",
                 "Gunakan bahan segar dan air bersih",
@@ -79,7 +79,7 @@ const AppData = {
             portionUnit: "2 porsi kecil",
             cookTime: "25 menit",
             image: "./assets/recipe-photos/rice-porridge.jpg",
-            nutrition: "Contoh MPASI dengan sumber protein hewani dan nabati. Sesuaikan tekstur menurut kemampuan makan anak; bukan terapi stunting.",
+            nutrition: "Perpaduan protein hewani dan nabati melengkapi MPASI. Sesuaikan teksturnya dengan kemampuan makan anak; menu ini bukan terapi stunting.",
             ingredients: [
                 "30 gram beras, cuci bersih",
                 "1 butir telur, matang sempurna",
@@ -105,7 +105,7 @@ const AppData = {
             portionUnit: "2 porsi kecil",
             cookTime: "30 menit",
             image: "./assets/recipe-photos/rice-porridge.jpg",
-            nutrition: "Contoh MPASI dengan ikan matang sebagai lauk. Periksa dan singkirkan duri dengan teliti; sajikan sesuai tekstur dan porsi anak.",
+            nutrition: "Ikan matang menjadi sumber lauk untuk MPASI. Periksa dan singkirkan duri dengan teliti; sajikan sesuai tekstur dan porsi anak.",
             ingredients: [
                 "30 gram beras, cuci bersih",
                 "30 gram ikan segar tanpa duri",
@@ -129,7 +129,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "20 menit",
             image: "./assets/recipe-photos/egg-rice-bowl.jpg",
-            nutrition: "Contoh menu sederhana. Untuk kehamilan, pilih telur matang sempurna, sayur yang dicuci bersih, dan ikuti arahan tenaga kesehatan.",
+            nutrition: "Telur matang sempurna dan sayur yang dicuci bersih mendukung pilihan makan yang aman selama kehamilan. Ikuti arahan tenaga kesehatan.",
             ingredients: [
                 "2 butir telur",
                 "1 ikat kecil bayam, cuci bersih",
@@ -154,7 +154,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "25 menit",
             image: "./assets/recipe-photos/vegetable-bowl.jpg",
-            nutrition: "Contoh menu keluarga berisi lauk nabati, sayuran, dan makanan pokok. Porsi anak perlu disesuaikan usia dan nafsu makannya.",
+            nutrition: "Lauk nabati, sayuran, dan makanan pokok menyajikan kombinasi menu keluarga yang beragam. Sesuaikan porsi anak dengan usia dan nafsu makannya.",
             ingredients: [
                 "100 gram tempe",
                 "100 gram sayuran, cuci bersih",
@@ -176,7 +176,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "35 menit",
             image: "./assets/recipe-photos/fish.jpg",
-            nutrition: "Contoh lauk ikan yang dimasak matang. Periksa duri sebelum disajikan; hindari klaim manfaat medis tanpa penilaian ahli.",
+            nutrition: "Ikan dimasak hingga matang sebagai pilihan lauk. Periksa durinya sebelum disajikan.",
             ingredients: [
                 "2 potong ikan segar",
                 "2 porsi nasi matang",
@@ -202,7 +202,7 @@ const AppData = {
             portionUnit: "2 porsi kecil",
             cookTime: "35 menit",
             image: "./assets/recipe-photos/rice-porridge.jpg",
-            nutrition: "Contoh MPASI dengan daging matang dan sayuran. Sesuaikan tekstur dengan usia; bukan pengganti pemeriksaan atau terapi.",
+            nutrition: "Daging matang dan sayuran melengkapi MPASI. Sesuaikan tekstur dengan usia; menu ini bukan pengganti pemeriksaan atau terapi.",
             ingredients: [
                 "30 gram beras, cuci bersih",
                 "30 gram daging sapi cincang",
@@ -228,7 +228,7 @@ const AppData = {
             portionUnit: "2 porsi kecil",
             cookTime: "35 menit",
             image: "./assets/recipe-photos/rice-porridge.jpg",
-            nutrition: "Contoh MPASI dengan ayam dan sayur. Sajikan lumat untuk bayi yang baru mulai makan, lalu tingkatkan tekstur sesuai kemampuan.",
+            nutrition: "Ayam dan sayur melengkapi MPASI. Sajikan dalam tekstur lumat untuk bayi yang baru mulai makan, lalu tingkatkan sesuai kemampuannya.",
             ingredients: [
                 "30 gram beras",
                 "30 gram ayam tanpa kulit, cincang",
@@ -254,7 +254,7 @@ const AppData = {
             portionUnit: "2 porsi kecil",
             cookTime: "30 menit",
             image: "./assets/recipe-photos/rice-porridge.jpg",
-            nutrition: "Contoh MPASI dengan ikan dan sayur. Pastikan ikan matang, bebas duri, dan teksturnya aman untuk kemampuan makan anak.",
+            nutrition: "Ikan dan sayur melengkapi MPASI. Pastikan ikan matang, bebas duri, dan disajikan dengan tekstur yang aman untuk kemampuan makan anak.",
             ingredients: [
                 "100 gram kentang, kupas dan cuci",
                 "30 gram ikan tanpa duri",
@@ -280,7 +280,7 @@ const AppData = {
             portionUnit: "2 porsi kecil",
             cookTime: "30 menit",
             image: "./assets/recipe-photos/rice-porridge.jpg",
-            nutrition: "Contoh MPASI dengan telur matang, tahu, dan brokoli. Potong atau lumatkan agar sesuai kemampuan mengunyah.",
+            nutrition: "Telur matang, tahu, dan brokoli memberi variasi bahan dalam MPASI. Potong atau lumatkan sesuai kemampuan mengunyah anak.",
             ingredients: [
                 "60 gram nasi matang",
                 "1 butir telur matang sempurna",
@@ -306,7 +306,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "35 menit",
             image: "./assets/recipe-photos/soup.jpg",
-            nutrition: "Contoh menu keluarga berisi lauk, sayur, dan sumber karbohidrat. Sesuaikan potongan dan porsi anak; batasi garam.",
+            nutrition: "Lauk, sayur, dan sumber karbohidrat melengkapi menu keluarga. Sesuaikan potongan dan porsi anak serta batasi garam.",
             ingredients: [
                 "100 gram ayam tanpa kulit",
                 "1 buah kentang kecil, potong dadu",
@@ -332,7 +332,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "25 menit",
             image: "./assets/recipe-photos/vegetable-bowl.jpg",
-            nutrition: "Contoh menu lauk nabati, sayur, dan makanan pokok. Masak hingga matang dan sesuaikan ukuran potongan.",
+            nutrition: "Lauk nabati, sayur, dan makanan pokok menghadirkan variasi dalam menu. Masak hingga matang dan sesuaikan ukuran potongan.",
             ingredients: [
                 "100 gram tempe, potong kecil",
                 "75 gram buncis, cuci dan potong kecil",
@@ -358,7 +358,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "20 menit",
             image: "./assets/recipe-photos/egg-rice-bowl.jpg",
-            nutrition: "Contoh menu sederhana dengan telur matang dan sayuran. Sertakan buah atau sayur lain sesuai ketersediaan.",
+            nutrition: "Telur matang dan sayuran menjadi pilihan lauk dan sayur yang praktis. Lengkapi dengan buah atau variasi sayur sesuai ketersediaan.",
             ingredients: [
                 "2 butir telur",
                 "30 gram wortel parut",
@@ -382,7 +382,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "50 menit",
             image: "./assets/recipe-photos/soup.jpg",
-            nutrition: "Contoh menu sumber protein nabati dan sayur. Kacang merah harus direndam dan dimasak sampai benar-benar lunak.",
+            nutrition: "Kacang merah menyediakan protein nabati untuk variasi menu bersama sayur. Rendam dan masak hingga benar-benar lunak.",
             ingredients: [
                 "100 gram kacang merah kering",
                 "1 buah wortel kecil",
@@ -406,7 +406,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "30 menit",
             image: "./assets/recipe-photos/fish.jpg",
-            nutrition: "Contoh menu ikan matang, tahu, dan sayur. Pilih ikan rendah merkuri, pastikan matang, dan periksa durinya.",
+            nutrition: "Ikan matang, tahu, dan sayur menghadirkan variasi lauk dan sayur. Pilih ikan rendah merkuri, pastikan matang, dan periksa durinya.",
             ingredients: [
                 "2 potong ikan rendah merkuri, bersihkan",
                 "100 gram tahu putih",
@@ -430,7 +430,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "25 menit",
             image: "./assets/recipe-photos/soup.jpg",
-            nutrition: "Contoh hidangan beragam untuk ibu menyusui; tidak ada satu menu yang menjamin produksi ASI meningkat.",
+            nutrition: "Hidangan beragam membantu memenuhi pilihan makan ibu menyusui. Tidak ada satu menu yang menjamin produksi ASI meningkat.",
             ingredients: [
                 "2 butir telur",
                 "50 gram wortel",
@@ -454,7 +454,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "35 menit",
             image: "./assets/recipe-photos/vegetable-stew.jpg",
-            nutrition: "Contoh menu dengan lauk nabati, pangan pokok, dan sayur. Sesuaikan porsi dengan kebutuhan masing-masing.",
+            nutrition: "Lauk nabati, pangan pokok, dan sayur melengkapi hidangan sehari-hari. Sesuaikan porsi dengan kebutuhan masing-masing.",
             ingredients: [
                 "150 gram tempe",
                 "2 buah ubi ukuran sedang",
@@ -478,7 +478,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "35 menit",
             image: "./assets/recipe-photos/meal.jpg",
-            nutrition: "Contoh lauk nabati dengan jagung. Padukan dengan sayur dan buah untuk menu yang lebih beragam.",
+            nutrition: "Lauk nabati dan jagung menjadi pilihan untuk hidangan keluarga. Padukan dengan sayur dan buah agar menu lebih beragam.",
             ingredients: [
                 "150 gram tahu putih",
                 "50 gram jagung pipil",
@@ -505,7 +505,7 @@ const AppData = {
             portionUnit: "2 porsi",
             cookTime: "30 menit",
             image: "./assets/recipe-photos/egg-rice-bowl.jpg",
-            nutrition: "Contoh menu keluarga dengan ayam matang, sayuran, dan nasi. Variasikan jenis sayur dan lauk sesuai ketersediaan.",
+            nutrition: "Ayam matang, sayuran, dan nasi menyajikan hidangan keluarga yang mengenyangkan. Variasikan sayur dan lauk sesuai ketersediaan.",
             ingredients: [
                 "100 gram ayam tanpa kulit",
                 "100 gram bayam, cuci bersih",
@@ -1051,10 +1051,10 @@ function renderStuntingRecommendations(heightZScore, ageMonths, weightZScore) {
         ageMonths >= recipe.ageRange[0] &&
         ageMonths <= recipe.ageRange[1]
     );
-    const heading = ageMonths < 24 ? 'Contoh menu MPASI sesuai usia' : 'Contoh menu keluarga sesuai usia';
+    const heading = ageMonths < 24 ? 'Inspirasi menu MPASI sesuai usia' : 'Inspirasi menu keluarga sesuai usia';
     const intro = heightZScore < -2
-        ? 'Hasil TB/U berada di bawah -2 SD. Menu ini hanya contoh makanan beragam sesuai usia, bukan pengobatan stunting; konsultasikan hasil ukur dengan tenaga kesehatan.'
-        : 'Hasil BB/U berada di bawah -2 SD. Menu ini hanya contoh makanan beragam sesuai usia, bukan terapi; konsultasikan hasil ukur dengan tenaga kesehatan.';
+        ? 'Hasil TB/U berada di bawah -2 SD. Menu ini dapat menjadi inspirasi makanan beragam sesuai usia, bukan pengobatan stunting. Konsultasikan hasil ukur dengan tenaga kesehatan.'
+        : 'Hasil BB/U berada di bawah -2 SD. Menu ini dapat menjadi inspirasi makanan beragam sesuai usia, bukan terapi. Konsultasikan hasil ukur dengan tenaga kesehatan.';
     container.innerHTML = `
                 <div class="space-y-3">
                     <div>
